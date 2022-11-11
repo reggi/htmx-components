@@ -20,7 +20,6 @@ const updateActive = async (req: Request, active: boolean) => {
   if (req.method === 'PUT') {
     const body = await req.formData()
     const ids = body.getAll('ids')
-    console.log({ids})
     ids.forEach((value: any) => {
       const id: string = value
       inMemoryDb[id].active = active
@@ -55,7 +54,6 @@ const PeopleTableBody = partial('/people-table-body', async () => {
 })
 
 const People = component('/people', async () => {
-  const people = await queryDatabase()
   return (
     <Fragment>
       <form id="checked-contacts">
