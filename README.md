@@ -5,7 +5,22 @@ I think of it as:
 2. HTMX in JSX (Fully typed JSX for all HTMX attributes without the `hx` prefix.)
 3. Dynamic routing / nesting / serving (no files / folders)
 
-> deno task start
+## "Click To Edit" Example
+
+This example acts as the "rosetta stone" it's a near 1:1 with the first exmaple in the HTMX docs:
+
+* Start the server `deno task click-to-edit`
+* Original HTMX code found here: https://htmx.org/examples/click-to-edit/
+* Open the file locally `code ./examples/1.click-to-edit.tsx`
+* Navigate to http://localhost:8000/contacts/1
+* Navigate to http://localhost:8000/contacts/1/edit
+
+---
+
+<details>
+<summary>Default Example (more chaotic example)</summary>
+
+* `deno task start`
 * http://localhost:8000/nest/bob
 * http://localhost:8000/nest/alice/matt
 * http://localhost:8000/registry/@reggi/alicebob
@@ -57,9 +72,6 @@ await serve(e)
 // export default routes // like express routes
 ```
 
-# Click To Edit:
+</details>
 
-> deno task click-to-edit
-* code ./examples/1.click-to-edit.tsx
-* http://localhost:8000/contacts/1
-* http://localhost:8000/contacts/1/edit
+
