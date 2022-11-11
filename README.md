@@ -11,6 +11,7 @@ This example acts as the "rosetta stone" it's a near 1:1 with the first example 
 
 * Start the server `deno task click-to-edit`
 * Original HTMX code found here: https://htmx.org/examples/click-to-edit/
+* Open the code on github https://github.com/reggi/htmx-components/blob/main/examples/1.click-to-edit.tsx
 * Open the file locally `code ./examples/1.click-to-edit.tsx`
 * Navigate to http://localhost:8000/contacts/1
 * Navigate to http://localhost:8000/contacts/1/edit
