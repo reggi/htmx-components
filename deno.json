@@ -1,8 +1,9 @@
 {
   "tasks": {
     "start": "deno run --allow-net --watch -r example.tsx",
-    "click-to-edit": "deno run --allow-net --watch ./examples/1.click-to-edit.tsx",
-    "bulk-update": "deno run --allow-net --watch ./examples/2.bulk-update.tsx"
+    "all-examples": "export NO_SERVE=true && deno run --allow-env --allow-net --watch ./examples/examples.tsx",
+    "click-to-edit": "deno run --allow-env --allow-net --watch ./examples/1.click-to-edit.tsx",
+    "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {

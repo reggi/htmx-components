@@ -1,8 +1,7 @@
 // deno-lint-ignore-file require-await no-explicit-any
-
 import { HTMX, HTMXComponents, Fragment } from "../mod.tsx"
 
-const { component, partial, serve } = new HTMXComponents('@reggi/example-bulk-update')
+const { component, partial, serve, routes } = new HTMXComponents('@reggi/example-bulk-update')
 
 const inMemoryDb: any = {
   '1': { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com', active: true },
@@ -53,7 +52,7 @@ const PeopleTableBody = partial('/people-table-body', async () => {
   )
 })
 
-const People = component('/people', async () => {
+export const People = component('/people', async () => {
   return (
     <Fragment>
       <form id="checked-contacts">
@@ -79,4 +78,8 @@ const People = component('/people', async () => {
   )
 })
 
-await serve()
+if (!Deno.env.get('NO_SERVE')) {
+  await serve()
+}
+
+export { routes }

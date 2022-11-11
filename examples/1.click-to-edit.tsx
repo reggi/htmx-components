@@ -1,8 +1,7 @@
 // deno-lint-ignore-file require-await no-explicit-any
+import { HTMX, HTMXComponents } from "../mod.tsx"
 
-import { HTMX, HTMXComponents, Fragment } from "../mod.tsx"
-
-const { component, serve } = new HTMXComponents('@reggi/example-click-to-edit')
+const { component, serve, routes } = new HTMXComponents('@reggi/example-click-to-edit')
 
 const inMemoryDb: any = {
   '1': { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com' },
@@ -30,7 +29,7 @@ const getOrUpdate = async ({ identifier }: { identifier: string }, request: Requ
   return await findDatabase({ identifier })
 }
 
-const Contact = component('/contacts/:identifier', async ({ identifier }: { identifier: string }, ctx) => {
+export const Contact = component('/contacts/:identifier', async ({ identifier }: { identifier: string }, ctx) => {
   const { firstName, lastName, email } = await getOrUpdate({ identifier }, ctx.request)
   return (
     <HTMX.div targetThis swapOuter>
@@ -44,7 +43,7 @@ const Contact = component('/contacts/:identifier', async ({ identifier }: { iden
   )
 })
 
-const Edit = component('/contacts/:identifier/edit', async ({ identifier }: { identifier: string }) => {
+export const Edit = component('/contacts/:identifier/edit', async ({ identifier }: { identifier: string }) => {
   const { firstName, lastName, email } = await findDatabase({ identifier })
   return (
     <Contact.form.put identifier={identifier} pushUrl targetThis swapOuter>
@@ -66,5 +65,8 @@ const Edit = component('/contacts/:identifier/edit', async ({ identifier }: { id
   )
 })
 
+if (!Deno.env.get('NO_SERVE')) {
+  await serve()
+}
 
-await serve()
+export { routes }

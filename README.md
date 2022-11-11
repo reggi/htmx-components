@@ -5,6 +5,12 @@ I think of it as:
 2. HTMX in JSX (Fully typed JSX for all HTMX attributes without the `hx` prefix.)
 3. Dynamic routing / nesting / serving (no files / folders)
 
+To run all the examples below in one server run:
+
+```bash
+deno task all-examples
+```
+
 ## "Click To Edit" Example
 
 This example acts as the "rosetta stone" it's a near 1:1 with the first example in the HTMX docs:
