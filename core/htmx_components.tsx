@@ -20,6 +20,8 @@ export const Wrapper: WrapperType = (p, context) => {
   return <span id={context.id} class={context.className}>{p.children}</span>
 }
 
+class ComponentMethodsRaw<C extends GenericProps> extends ComponentMethods<C> {}
+
 class SimpleRoute {
   constructor (
     public urlPattern: URLPattern,
@@ -33,9 +35,10 @@ export class HTMXComponents {
   routes: (ComponentMethods<any> | SimpleRoute)[] = []
   constructor (
     public name: string,
-    public wrapper = Wrapper
+    public wrapper = undefined
   ) {
     this.component = this.component.bind(this)
+    this.partial = this.partial.bind(this)
     this.serve = this.serve.bind(this)
     this.context = this.context.bind(this)
     this.registryPage = this.registryPage.bind(this)
@@ -55,7 +58,7 @@ export class HTMXComponents {
         const results = route.urlPattern.exec(request.url)
         const params = results?.pathname.groups
         const Comp = route.Wrap as any
-        const wrapped = <Layout><Comp {...params}/></Layout>
+        const wrapped = route instanceof ComponentMethodsRaw ? <Comp {...params}/> : <Layout><Comp {...params}/></Layout>
         const html = await render(wrapped, { request, ...route.context })
         return new Response(html, { headers: { "Content-Type": 'text/html' }, status: 200 });
       }
@@ -79,6 +82,25 @@ export class HTMXComponents {
     this.routes.push(instance)
     return Object.assign(instance.Wrap as GC<C>, instance)
   }
+
+  partial <C extends GenericProps> (Component: GenericComponent<C>, options: ComponentOptions<C>): ComponentWithMethods<C>
+  partial <C extends GenericProps> (path: string, Component: GenericComponent<C>, propsToUrlOrOptions?: PropsToUrl<C> | ComponentOptions<C>): ComponentWithMethods<C>
+  partial <C extends GenericProps> (pathOrComponent: GenericComponent<C> | string, ComponentOrOptions: ComponentOptions<C> | GenericComponent<C>, propsToUrlOrOptions?: PropsToUrl<C> | ComponentOptions<C>): ComponentWithMethods<C> {
+    const path = typeof pathOrComponent === 'string' ? pathOrComponent : typeof ComponentOrOptions === 'object' ? ComponentOrOptions.path : null
+    if (!path) throw new Error('No path provided to component');
+    
+    const Component = typeof pathOrComponent === 'function' ? pathOrComponent : typeof ComponentOrOptions === 'function' ? ComponentOrOptions : null
+    if (!Component) throw new Error('No component provided');
+
+    const _propsToUrl = (typeof ComponentOrOptions === 'object') ? ComponentOrOptions.propsToUrl : typeof propsToUrlOrOptions === 'function' ? propsToUrlOrOptions : undefined
+    
+    const wrapper = (typeof ComponentOrOptions === 'object') ? ComponentOrOptions.Wrapper : (typeof propsToUrlOrOptions === 'object') ? propsToUrlOrOptions.Wrapper : this.wrapper
+
+    const instance = new ComponentMethodsRaw<C>(path, Component, _propsToUrl, wrapper)
+    this.routes.push(instance)
+    return Object.assign(instance.Wrap as GC<C>, instance)
+  }
+
   static main () {
     return new HTMXComponents('unknown')
   }

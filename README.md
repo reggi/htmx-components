@@ -16,6 +16,14 @@ This example acts as the "rosetta stone" it's a near 1:1 with the first example 
 * Navigate to http://localhost:8000/contacts/1
 * Navigate to http://localhost:8000/contacts/1/edit
 
+## "Bulk Update" Example
+
+* Start the server `deno task bulk-update`
+* Original HTMX code found here: https://htmx.org/examples/bulk-update/
+* Open the code on github https://github.com/reggi/htmx-components/blob/main/examples/2.bulk-update.tsx
+* Open the file locally `code ./examples/2.bulk-update.tsx`
+* Navigate to http://localhost:8000/people
+
 ## Philosophy / Anatomy / Ergonomics
 
 This is an HTMX component:
