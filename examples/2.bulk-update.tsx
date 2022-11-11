@@ -71,7 +71,7 @@ const People = component('/people', async () => {
           </tbody>
         </table>
       </form>
-      <HTMX.div include="#checked-contacts" target="#tbody" swapOuter>
+      <HTMX.div include="#checked-contacts" target="#tbody" swapInner>
         <Activate.button.put class="btn">Activate</Activate.button.put>
         <Deactivate.button.put class="btn">Deactivate</Deactivate.button.put>
       </HTMX.div>
