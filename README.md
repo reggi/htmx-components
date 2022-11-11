@@ -7,7 +7,7 @@ I think of it as:
 
 ## "Click To Edit" Example
 
-This example acts as the "rosetta stone" it's a near 1:1 with the first exmaple in the HTMX docs:
+This example acts as the "rosetta stone" it's a near 1:1 with the first example in the HTMX docs:
 
 * Start the server `deno task click-to-edit`
 * Original HTMX code found here: https://htmx.org/examples/click-to-edit/
