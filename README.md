@@ -52,6 +52,9 @@ const e = context({
 })
 
 await serve(e)
+
+// or 
+// export default routes // like express routes
 ```
 
 # Click To Edit:
