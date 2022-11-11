@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --watch example.tsx"
+  },
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}

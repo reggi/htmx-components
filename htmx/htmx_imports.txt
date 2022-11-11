@@ -1,0 +1,2 @@
+import { JSX } from 'preact' 
+import { resolveHTMXProps, HTMXProps } from './htmx_props.ts'
