@@ -17,7 +17,7 @@ http://localhost:8000/registry/@reggi/alicebob
 import { HTMX, HTMXComponents, serve, Fragment } from "./mod.tsx"
 
 // http://localhost:8000/registry/@reggi/alicebob
-const { component, routes, context, routes } = new HTMXComponents('@reggi/alicebob')
+const { component, routes, context } = new HTMXComponents('@reggi/alicebob')
 
 const Alice = component('/alice/:name', async ({ name }: { name: string}, ctx) => {
   const _name = await Promise.resolve(name)
