@@ -37,7 +37,7 @@ const Contact = component('/contacts/:identifier', async ({ identifier }: { iden
         <div><label>First Name</label>: {firstName} </div>
         <div><label>Last Name</label>: {lastName} </div>
         <div><label>Email</label>: {email} </div>
-        <Edit.button.get identifier={identifier} class="btn btn-primary">
+        <Edit.button.get identifier={identifier} pushUrl class="btn btn-primary">
         Click To Edit
         </Edit.button.get>
     </HTMX.div>
@@ -47,7 +47,7 @@ const Contact = component('/contacts/:identifier', async ({ identifier }: { iden
 const Edit = component('/contacts/:identifier/edit', async ({ identifier }: { identifier: string }) => {
   const { firstName, lastName, email } = await findDatabase({ identifier })
   return (
-    <Contact.form.put identifier={identifier} targetThis swapOuter>
+    <Contact.form.put identifier={identifier} pushUrl targetThis swapOuter>
       <div>
         <label>First Name</label>
         <input type="text" name="firstName" value={firstName}/>
@@ -61,7 +61,7 @@ const Edit = component('/contacts/:identifier/edit', async ({ identifier }: { id
         <input type="email" name="email" value={email}/>
       </div>
       <button class="btn">Submit</button>
-      <Contact.button.get identifier={identifier} class='btn'>Cancel</Contact.button.get>
+      <Contact.button.get identifier={identifier} pushUrl class='btn'>Cancel</Contact.button.get>
     </Contact.form.put> 
   )
 })

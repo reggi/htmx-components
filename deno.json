@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "start": "deno run --allow-net --watch example.tsx",
+    "start": "deno run --allow-net --watch -r example.tsx",
     "click-to-edit": "deno run --allow-net --watch ./examples/1.click-to-edit.tsx"
   },
   "importMap": "./import_map.json",
