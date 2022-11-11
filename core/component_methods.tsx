@@ -48,7 +48,7 @@ export class ComponentMethods<C extends GenericProps> {
     this.path = _path || ""
     this.urlPattern = new URLPattern({pathname: this.path})
     this.propsToUrl = _propsToUrl ?? ((_props, path, ctx: any, query) => {
-      const result = ctx.data.nestPath ? `${ctx.data.nestPath}${path}` : path
+      const result = (ctx.data && ctx.data.nestPath) ? `${ctx.data.nestPath}${path}` : path
       const toPath = compile(result)
       const core = toPath(_props)
       const q = new URLSearchParams(query).toString();

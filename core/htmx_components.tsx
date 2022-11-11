@@ -30,7 +30,6 @@ class SimpleRoute {
 type Routes = (ComponentMethods<any> | SimpleRoute)[]
 
 export class HTMXComponents {
-  // deno-lint-ignore no-explicit-any
   routes: (ComponentMethods<any> | SimpleRoute)[] = []
   constructor (
     public name: string,
@@ -46,16 +45,17 @@ export class HTMXComponents {
     const res = Response.json(publicContext)
     return new SimpleRoute(req, res)
   }
-  serve (routes: Routes) { 
+  serve (routes: Routes = []) { 
     return denoServe(async (request: Request) => {
       const route = [...this.routes, ...routes].find(route => route.urlPattern.exec(request.url))
       if (route instanceof SimpleRoute) {
         return route.response
       }
       if (route) {
-        // deno-lint-ignore no-explicit-any
+        const results = route.urlPattern.exec(request.url)
+        const params = results?.pathname.groups
         const Comp = route.Wrap as any
-        const wrapped = <Layout><Comp/></Layout>
+        const wrapped = <Layout><Comp {...params}/></Layout>
         const html = await render(wrapped, { request, ...route.context })
         return new Response(html, { headers: { "Content-Type": 'text/html' }, status: 200 });
       }

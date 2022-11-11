@@ -6,13 +6,15 @@ I think of it as:
 3. Dynamic routing / nesting / serving (no files / folders)
 
 > deno task start
-http://localhost:8000/nest/bob
-http://localhost:8000/nest/alice/matt
-http://localhost:8000/registry/@reggi/alicebob
+* http://localhost:8000/nest/bob
+* http://localhost:8000/nest/alice/matt
+* http://localhost:8000/registry/@reggi/alicebob
+
+# Default Example:
 
 ![](./screenshots/J9x_9P1Y.jpg)
 ![](./screenshots/DR2PrQJK.png)
-
+w
 ```tsx
 import { HTMX, HTMXComponents, serve, Fragment } from "./mod.tsx"
 
@@ -51,3 +53,10 @@ const e = context({
 
 await serve(e)
 ```
+
+# Click To Edit:
+
+> deno task click-to-edit
+* code ./examples/1.click-to-edit.tsx
+* http://localhost:8000/contacts/1
+* http://localhost:8000/contacts/1/edit
