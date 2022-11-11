@@ -9,3 +9,6 @@ I think of it as:
 http://localhost:8000/nest/bob
 http://localhost:8000/nest/alice/matt
 http://localhost:8000/registry/@reggi/alicebob
+
+![](./screenshots/J9x_9P1Y.jpg)
+![](./screenshots/DR2PrQJK.jpg)
