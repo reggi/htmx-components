@@ -21,6 +21,8 @@ This example acts as the "rosetta stone" it's a near 1:1 with the first example 
 * Open the file locally `code ./examples/1.click-to-edit.tsx`
 * Navigate to http://localhost:8000/contacts/1
 * Navigate to http://localhost:8000/contacts/1/edit
+* Web https://reggi-htmx-components.deno.dev/contacts/1
+* Web https://reggi-htmx-components.deno.dev/contacts/1/edit
 
 ## "Bulk Update" Example
 
@@ -29,6 +31,16 @@ This example acts as the "rosetta stone" it's a near 1:1 with the first example 
 * Open the code on github https://github.com/reggi/htmx-components/blob/main/examples/2.bulk-update.tsx
 * Open the file locally `code ./examples/2.bulk-update.tsx`
 * Navigate to http://localhost:8000/people
+* Web https://reggi-htmx-components.deno.dev/people
+
+## "Click To Load" Example
+
+* Start the server `deno task click-to-load`
+* Original HTMX code found here: https://htmx.org/examples/click-to-load/
+* Open the code on github https://github.com/reggi/htmx-components/blob/main/examples/3.click-to-load.tsx
+* Open the file locally `code ./examples/3.click-to-load.tsx`
+* Navigate to http://localhost:8000/click-to-load
+* Web https://reggi-htmx-components.deno.dev/click-to-load
 
 ## Philosophy / Anatomy / Ergonomics
 

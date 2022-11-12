@@ -3,7 +3,8 @@
     "start": "deno run --allow-net --watch -r example.tsx",
     "all-examples": "export NO_SERVE=true && deno run --allow-env --allow-net --watch ./examples/examples.tsx",
     "click-to-edit": "deno run --allow-env --allow-net --watch ./examples/1.click-to-edit.tsx",
-    "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx"
+    "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx",
+    "click-to-load": "deno run --allow-env --allow-net --watch ./examples/3.click-to-load.tsx"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {
