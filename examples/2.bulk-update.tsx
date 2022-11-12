@@ -3,7 +3,7 @@ import { HTMX, HTMXComponents, Fragment } from "../mod.tsx"
 
 const { component, partial, serve, routes } = new HTMXComponents('@reggi/example-bulk-update')
 
-let inMemoryDb: any = {
+const inMemoryDb: any = {
   '1': { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com', active: true },
   '2': { firstName: 'Rick', lastName: 'Dekkard', email: 'rick@br.com', active: true },
   '3': { firstName: 'Joe', lastName: 'Smith', email: 'joe@smith.org', active: true },
@@ -12,7 +12,7 @@ let inMemoryDb: any = {
 }
 
 const queryDatabase = async () => {
-  return Object.entries({...inMemoryDb}).map(([id, user]: any) => ({ id, ...user }))
+  return Object.entries(inMemoryDb).map(([id, user]: any) => ({ id, ...user }))
 }
 
 const updateActive = async (req: Request, active: boolean) => {
@@ -21,11 +21,7 @@ const updateActive = async (req: Request, active: boolean) => {
     const ids = body.getAll('ids')
     ids.forEach((value: any) => {
       const id: string = value
-      const v = inMemoryDb
-      inMemoryDb = {
-        ...v,
-        [id]: { ...inMemoryDb[id], active }
-      }
+      inMemoryDb[id].active = active
     })
   }
 }
