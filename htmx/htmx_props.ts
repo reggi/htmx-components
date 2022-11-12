@@ -132,10 +132,39 @@ export const resolveHTMXProps = (props: HTMXProps) => {
     replaceUrl,
     request, requestTimeout, requestCredentials, requestCredentialsOmit, requestCredentialsSameOrigin, requestCredentialsInclude, requestNoHeaders,
     req, reqTimeout, reqCreds, reqCredsOmit, reqCredsSameOrigin, reqCredsInclude, reqNoHeaders,
-    sync, swapOob,
+    sync,
     select, selectOob,
     boost, indicator, ws, pushUrl,
     get, post, put, patch, delete: del,
+
+
+    // remove swaps
+    swap: _swap,
+    swapInnerHTML: _swapInnerHTML,
+    swapOuterHTML: _swapOuterHTML,
+    swapAfterBegin: _swapAfterBegin,
+    swapAfterbegin: _swapAfterbegin,
+    swapBeforeBegin: _swapBeforeBegin,
+    swapBeforebegin: _swapBeforebegin,
+    swapBeforeend: _swapBeforeend,
+    swapBeforeEnd: _swapBeforeEnd,
+    swapAfterend: _swapAfterend,
+    swapAfterEnd: _swapAfterEnd,
+    swapNone: _swapNone,
+    swapInner: _swapInner,
+    swapOuter: _swapOuter,
+    swapTiming: _swapTiming,
+    swapSettle: _swapSettle,
+    swapScroll: _swapScroll,
+    swapScrollTop: _swapScrollTop,
+    swapScrollBottom: _swapScrollBottom,
+    swapShow: _swapShow,
+    swapShowTop: _swapShowTop,
+    swapShowBottom: _swapShowBottom,
+    swapFocusScroll: _swapFocusScroll,
+    // different attribute
+    swapOob,
+
   ...rest} = props
   
   if (boost) build.push({ 'hx-boost': "true" })
@@ -145,8 +174,8 @@ export const resolveHTMXProps = (props: HTMXProps) => {
   if (select) build.push({ 'hx-select': select })
   if (selectOob) build.push({ 'hx-select-oob': 'true' })
   
-  const swap = swapBuilder(props)
-  if (swap) build.push({ 'hx-swap': swap })
+  const __swap = swapBuilder(props)
+  if (__swap) build.push({ 'hx-swap': __swap })
   if (swapOob) build.push({ 'hx-swap-oob': "true" })
 
   if (targetThis) build.push({ 'hx-target': "this" })

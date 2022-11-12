@@ -1,4 +1,4 @@
-// deno-lint-ignore-file require-await
+// deno-lint-ignore-file require-await no-explicit-any
 import { Fragment, HTMX, HTMXComponents, asyncComponent } from "../mod.tsx"
 
 const { component, partial, serve, routes } = new HTMXComponents('@reggi/delete-row')

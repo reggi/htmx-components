@@ -121,7 +121,7 @@ export const triggerBuilder = (props: HTMXProps, trigger: Trigger) => {
   })
   
   const {
-    triggerEvery, triggerEveryCondition, triggerLoad, targetClosest
+    triggerEvery, triggerEveryCondition, triggerLoad
   } = props
 
   if (triggerEvery) {
