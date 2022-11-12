@@ -1,10 +1,11 @@
 import type { HTMXProps } from "./htmx_props.ts"
 
-
 /// <reference no-default-lib="true"/>
 /// <reference lib="dom" />
 /// <reference lib="dom.asynciterable" />
+/// <reference lib="dom.iterable" />
 /// <reference lib="deno.ns" />
+/// <reference lib="esnext" />
 
 export type ElementEvents =
   "animationcancel" |
@@ -120,7 +121,7 @@ export const triggerBuilder = (props: HTMXProps, trigger: Trigger) => {
   })
   
   const {
-    triggerEvery, triggerEveryCondition, triggerLoad
+    triggerEvery, triggerEveryCondition, triggerLoad, targetClosest
   } = props
 
   if (triggerEvery) {

@@ -1,24 +1,85 @@
 import { Trigger, triggerBuilder } from './htmx_trigger.ts'
 
 export type HTMXSwappingKeys = 'innerHTML' | 'outerHTML' | 'afterbegin' | 'beforebegin' | 'beforeend' | 'afterend' | 'none'
-export type HTMXSwappingAttributes = Partial<Record<`swap${Capitalize<HTMXSwappingKeys>}`, boolean>>
+// export type HTMXSwappingAttributes = Partial<Record<`swap${Capitalize<HTMXSwappingKeys>}`, boolean>>
 export const methodKeys = ['get', 'post', 'put', 'patch', 'delete' ] as const
 export type HTMXMethodKeys = typeof methodKeys[number]
 export type HTMXMethodAttributes = Partial<Record<HTMXMethodKeys, string>>
 export type HTMXMethodSpreadable = Partial<Record<HTMXMethodKeys, Partial<Record<`hx-${HTMXMethodKeys}`, string>>>>
 
-export interface HTMXProps extends HTMXSwappingAttributes, HTMXMethodAttributes {
-  swapInner?: boolean,
-  swapOuter?: boolean,
+export interface HTMXSwapOptions {
+  type?: HTMXSwappingKeys,
+  swap?: string | number,
+  timing?: string | number,
+  settle?: string | number,
+  focusScroll?: boolean,
+  scroll?: string,
+  show?: string,
+  scrollBottom?: boolean,
+  scrollTop?: boolean,
+  showTop?: boolean,
+  showBottom?: boolean,
+}
+
+export interface HTMXSwapProps {
+  swap?: string | HTMXSwapOptions,
+  swapInnerHTML?: boolean
+  swapOuterHTML?: boolean
+  swapAfterBegin?: boolean
+  swapAfterbegin?: boolean
+  swapBeforeBegin?: boolean
+  swapBeforebegin?: boolean
+  swapBeforeend?: boolean
+  swapBeforeEnd?: boolean
+  swapAfterend?: boolean
+  swapAfterEnd?: boolean
+  swapNone?: boolean
+  swapInner?: boolean
+  swapOuter?: boolean
+  swapTiming?: string | number
+  swapSettle?: string | number
+  swapScroll?: string
+  swapScrollTop?: boolean
+  swapScrollBottom?: boolean
+  swapShow?: string
+  swapShowTop?: boolean
+  swapShowBottom?: boolean
+  swapFocusScroll?: boolean
+  // different attribute
+  swapOob?: boolean
+}
+
+export const swapBuilder = (p: HTMXSwapProps): string => {
+  const swap = typeof p.swap == 'string' ? [p.swap] : [];
+  const s: HTMXSwapOptions = typeof p.swap == 'object' ? p.swap : {};
+  if (p.swapInnerHTML || p.swapInner || s.type === 'innerHTML') swap.push('innerHTML')
+  if (p.swapOuterHTML || p.swapOuter || s.type === 'outerHTML') swap.push('outerHTML')
+  if (p.swapAfterBegin || p.swapAfterbegin || s.type === 'afterbegin') swap.push('afterbegin')
+  if (p.swapBeforeBegin || p.swapBeforebegin || s.type === 'beforebegin') swap.push('beforebegin')
+  if (p.swapBeforeEnd || p.swapBeforeend || s.type === 'beforeend') swap.push('beforeend')
+  if (p.swapAfterend || p.swapAfterEnd || s.type === 'afterend') swap.push('afterend')
+  if (p.swapNone || s.type === 'none') swap.push('none')
+  if (p.swapTiming || s.timing || s.swap) swap.push(`swap:${p.swapTiming || s.timing || s.swap}`)
+  if (p.swapSettle || s.settle) swap.push(`settle:${p.swapSettle || s.settle}`)
+  if (p.swapScroll || s.scroll) swap.push(`scroll:${p.swapScroll || s.scroll}`)
+  if (p.swapScrollTop || s.scrollTop) swap.push(`scroll:top`)
+  if (p.swapScrollBottom || s.scrollBottom) swap.push(`scroll:bottom`)
+  if (p.swapShow || s.show) swap.push(`show:${p.swapShow || s.show}`)
+  if (p.swapShowTop || s.showTop) swap.push(`show:top`)
+  if (p.swapShowBottom || s.showBottom) swap.push(`show:bottom`)
+  if (p.swapFocusScroll || s.focusScroll) swap.push(`focus-scroll:true`)
+  return swap.join(' ')
+}
+
+export interface HTMXProps extends HTMXSwapProps, HTMXMethodAttributes {
   trigger?: Trigger
   triggerEvery?: number
   triggerEveryCondition?: string
   triggerLoad?: boolean
-
+  targetClosest?: string
   targetThis?: boolean
   target?: string
   sync?: string
-  swapOob?: boolean
   select?: string
   confirm?: string
   boost?: boolean
@@ -66,7 +127,7 @@ export const decap = (string: string) => {
 export const resolveHTMXProps = (props: HTMXProps) => {
   const build: {[key: string]: string}[] = []
   const {
-    targetThis, target, trigger, confirm, vals, disableHTMX, disinherit, encoding,
+    targetThis, target, targetClosest, trigger, confirm, vals, disableHTMX, disinherit, encoding,
     ext, headers, historyElt, include, params, paramsNot, paramsNone, preserve, prompt,
     replaceUrl,
     request, requestTimeout, requestCredentials, requestCredentialsOmit, requestCredentialsSameOrigin, requestCredentialsInclude, requestNoHeaders,
@@ -74,8 +135,6 @@ export const resolveHTMXProps = (props: HTMXProps) => {
     sync, swapOob,
     select, selectOob,
     boost, indicator, ws, pushUrl,
-    swapInner, swapOuter,
-    swapInnerHTML, swapOuterHTML, swapAfterbegin, swapBeforebegin, swapBeforeend, swapAfterend, swapNone,
     get, post, put, patch, delete: del,
   ...rest} = props
   
@@ -85,16 +144,14 @@ export const resolveHTMXProps = (props: HTMXProps) => {
   if (pushUrl) build.push({ 'hx-push-url': "true" })
   if (select) build.push({ 'hx-select': select })
   if (selectOob) build.push({ 'hx-select-oob': 'true' })
-  if (swapInnerHTML || swapInner) build.push({ 'hx-swap': "innerHTML" }) // swaps
-  if (swapOuterHTML || swapOuter) build.push({ 'hx-swap': "outerHTML" })
-  if (swapAfterbegin) build.push({ 'hx-swap': "afterbegin" })
-  if (swapBeforebegin) build.push({ 'hx-swap': "beforebegin" })
-  if (swapBeforeend) build.push({ 'hx-swap': "beforeend" })
-  if (swapAfterend) build.push({ 'hx-swap': "afterend" })
-  if (swapNone) build.push({ 'hx-swap': "none" })
+  
+  const swap = swapBuilder(props)
+  if (swap) build.push({ 'hx-swap': swap })
   if (swapOob) build.push({ 'hx-swap-oob': "true" })
+
   if (targetThis) build.push({ 'hx-target': "this" })
   if (target) build.push({ 'hx-target': target })
+  if (targetClosest) build.push({ 'hx-target': `closest ${targetClosest}` })
   if (trigger) build.push({ 'hx-trigger': triggerBuilder(props, trigger) })
   if (vals) build.push({ 'hx-vals': vals })
 
