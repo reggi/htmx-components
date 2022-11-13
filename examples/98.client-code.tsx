@@ -1,7 +1,7 @@
 import { Fragment } from "preact";
 import { HTMXComponents } from "../mod.tsx";
 
-const { component, serve, routes, clientCode } = new HTMXComponents('@reggi/web-component')
+const { component, serve, routes, clientCode } = new HTMXComponents('@reggi/client-code')
 
 export const ClientCodeExample = clientCode(
   new URL('./client_code/example.ts', import.meta.url).href
