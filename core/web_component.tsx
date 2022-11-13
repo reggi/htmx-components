@@ -31,11 +31,13 @@ export interface WebComponent<P extends Record<string, unknown> = any> extends W
   (props: P): VNode<any>
 }
 
-export function defineWebComponent <P extends Record<string, unknown>>(opts: {
+export function defineWebComponent <P extends Record<string, unknown>>(opts: string | {
   tag?: string,
   path: string
 }) {
-  const instance = new WebComponentHarness(opts.path, opts.tag)
+  const path = typeof opts == 'string' ? opts : opts.path
+  const tag = typeof opts == 'string' ? undefined : opts.tag
+  const instance = new WebComponentHarness(path, tag)
   function Component (props: P) {
     return createElement(instance.tag, props)
   }

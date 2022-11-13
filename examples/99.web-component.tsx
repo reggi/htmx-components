@@ -3,9 +3,9 @@ import { HTMXComponents } from "../mod.tsx";
 
 const { component, serve, routes, webComponent } = new HTMXComponents('@reggi/web-component')
 
-export const ContentWarning = webComponent<{ children: ComponentChild }>({
-  path: new URL('./web_components/content_warning.ts', import.meta.url).href,
-})
+export const ContentWarning = webComponent<{ children: ComponentChild }>(
+  new URL('./web_components/content_warning.ts', import.meta.url).href
+)
 
 export const WebComponentExample = component('/web-component', () => {
   return (
