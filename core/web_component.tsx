@@ -12,11 +12,13 @@ export class WebComponentHarness {
   externalPath: string
   script: VNode
   urlPattern: URLPattern
+  tag: string
   constructor (
-    public tag: string,
-    public path: string
+    public path: string,
+    public _tag?: string
   ) {
-    this.entry = { id: tag, url: path }
+    this.tag = _tag ? _tag : parse(path).name.toLocaleLowerCase().replace(/[^a-z]/gi, '-');
+    this.entry = { id: this.tag, url: path }
     this.entryId = getEntryId(this.entry);
     this.externalId = `/${this.entryId}.js`
     this.externalPath = `/${this.entryId}.js`
@@ -30,16 +32,16 @@ export interface WebComponent<P extends Record<string, unknown> = any> extends W
 }
 
 export function defineWebComponent <P extends Record<string, unknown>>(opts: {
-  tag: string,
+  tag?: string,
   path: string
 }) {
-  const instance = new WebComponentHarness(opts.tag, opts.path)
+  const instance = new WebComponentHarness(opts.path, opts.tag)
   function Component (props: P) {
-    return createElement(opts.tag, props)
+    return createElement(instance.tag, props)
   }
   return Object.assign(Component, instance)
 }
 
 export const isWebComponent = (x: any): x is WebComponent => {
-  return "TYPE" in x && x.TYPE == "WEB_COMPONENT"
+  return x && "TYPE" in x && x.TYPE == "WEB_COMPONENT"
 }
