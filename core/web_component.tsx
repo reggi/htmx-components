@@ -25,16 +25,16 @@ export class WebComponentHarness {
   }
 }
 
-export interface WebComponent<P extends { props: Record<string, unknown> } = { props: any }> extends WebComponentHarness{
-  (props: P['props']): VNode<any>
+export interface WebComponent<P extends Record<string, unknown> = any> extends WebComponentHarness{
+  (props: P): VNode<any>
 }
 
-export function defineWebComponent <P extends { props: Record<string, unknown> }>(opts: {
+export function defineWebComponent <P extends Record<string, unknown>>(opts: {
   tag: string,
   path: string
 }) {
   const instance = new WebComponentHarness(opts.tag, opts.path)
-  function Component (props: P['props']) {
+  function Component (props: P) {
     return createElement(opts.tag, props)
   }
   return Object.assign(Component, instance)

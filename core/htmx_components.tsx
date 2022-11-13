@@ -5,7 +5,7 @@ import { Layout } from './layout.tsx'
 import render from 'preact-async-render-to-string'
 import { PropsToUrl } from './method_convience.tsx';
 import { ComponentChild, ComponentChildren, JSX } from 'preact'
-import { isWebComponent, WebComponent } from "./web_component.tsx";
+import { defineWebComponent, isWebComponent, WebComponent } from "./web_component.tsx";
 import { Bundler } from "../esbuild/bundle.ts";
 
 export type ComponentWithMethods<C extends GenericProps> = GC<C> & ComponentMethods<C>
@@ -52,6 +52,7 @@ export class HTMXComponents {
     this.serve = this.serve.bind(this)
     this.context = this.context.bind(this)
     this.registryPage = this.registryPage.bind(this)
+    this.webComponent = this.webComponent.bind(this)
     this.routes = [...this.routes, ...this.webComponents]
   }
 
@@ -147,6 +148,12 @@ export class HTMXComponents {
     const instance = new ComponentMethodsRaw<C>(path, Component, _propsToUrl, wrapper)
     this.routes.push(instance)
     return Object.assign(instance.Wrap as GC<C>, instance)
+  }
+
+  webComponent <T extends Record<string, unknown>>(...args: Parameters<typeof defineWebComponent>) {
+    const webComponent = defineWebComponent<T>(...args)
+    this.routes.push(webComponent)
+    return webComponent;
   }
 
   static main () {

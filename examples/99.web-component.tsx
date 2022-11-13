@@ -1,14 +1,11 @@
 import { ComponentChild } from "preact";
 import { defineWebComponent, HTMXComponents } from "../mod.tsx";
 
-export const ContentWarning = defineWebComponent<{ props: { children: ComponentChild }}>({
+const { component, serve, routes, webComponent } = new HTMXComponents('@reggi/web-component')
+
+export const ContentWarning = webComponent<{ children: ComponentChild }>({
   tag: 'content-warning',
   path: new URL('./web_components/content_warning.ts', import.meta.url).href,
-})
-
-const { component, serve, routes } = new HTMXComponents({
-  name: '@reggi/web-component',
-  webComponents: [ ContentWarning ],
 })
 
 export const WebComponentExample = component('/web-component', () => {
