@@ -12,15 +12,13 @@ export class WebComponentHarness {
   externalPath: string
   script: VNode
   urlPattern: URLPattern
-  fileName: string
   constructor (
     public tag: string,
     public path: string
   ) {
     this.entry = { id: tag, url: path }
     this.entryId = getEntryId(this.entry);
-    this.fileName = parse(this.path).name
-    this.externalId = `/entry-${this.fileName}.js`
+    this.externalId = `/${this.entryId}.js`
     this.externalPath = `/${this.entryId}.js`
     this.script = <script src={this.externalPath}></script>
     this.urlPattern = new URLPattern({ pathname: this.externalPath })

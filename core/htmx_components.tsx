@@ -82,7 +82,7 @@ export class HTMXComponents {
     const webComponents = this.webComponentsFroRoutes(allRoutes)
 
     if (webComponents.length) {
-      b = new Bundler([{ id: 'content_warning', url: new URL('../examples/web_components/content_warning.ts', import.meta.url).href}])
+      b = new Bundler(webComponents.map(v => v.entry))
       await b.bundle()
     }
 

@@ -3,7 +3,7 @@ import { defineWebComponent, HTMXComponents } from "../mod.tsx";
 
 export const ContentWarning = defineWebComponent<{ props: { children: ComponentChild }}>({
   tag: 'content-warning',
-  path: './content_warning.ts',
+  path: new URL('./web_components/content_warning.ts', import.meta.url).href,
 })
 
 const { component, serve, routes } = new HTMXComponents({
