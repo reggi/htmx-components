@@ -36,6 +36,9 @@ export function componentMethodConvience <C extends GenericProps>(path: string, 
       delete: wrapHtmxComponent<C>()(Component)((props, ctx, query) => ({ delete: propsToUrl(props, path, ctx, query) })),
       href: wrapHtmxComponent<C>()(Component)((props, ctx, query) => ({ href: propsToUrl(props, path, ctx, query) })),
       src: wrapHtmxComponent<C>()(Component)((props, ctx, query) => ({ src: propsToUrl(props, path, ctx, query) })),
+
+      // clientCode
+      onClick: wrapHtmxComponent<C>()(Component)((props, ctx, query) => ({ onclick: propsToUrl(props, path, ctx, query) })),
     }
   }
 }
@@ -49,4 +52,6 @@ export type ComponentmethodConvience<C, Elm extends HTMLElement> = {
   delete: Same<C, Elm>
   href: Same<C, Elm>
   src: Same<C, Elm>
+
+  onClick: Same<C, Elm>
 }

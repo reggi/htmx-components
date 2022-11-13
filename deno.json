@@ -7,7 +7,8 @@
     "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx",
     "click-to-load": "deno run --allow-env --allow-net --watch ./examples/3.click-to-load.tsx",
     "delete-row": "deno run --allow-env --allow-net --watch ./examples/4.delete-row.tsx",
-    "web-component": "deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/99.web-component.tsx"
+    "web-component": "deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/99.web-component.tsx",
+    "client-code": "deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/98.client-code.tsx"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {

@@ -7,6 +7,7 @@ import { PropsToUrl } from './method_convience.tsx';
 import { ComponentChild, ComponentChildren, JSX } from 'preact'
 import { defineWebComponent, isWebComponent, WebComponent } from "./web_component.tsx";
 import { Bundler } from "../esbuild/bundle.ts";
+import { ClientCode, defineClientCode, isClientCode } from "./client_code.tsx";
 
 export type ComponentWithMethods<C extends GenericProps> = GC<C> & ComponentMethods<C>
 
@@ -32,7 +33,7 @@ class SimpleRoute {
   ) {}
 }
 
-type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent)[]
+type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent | ClientCode)[]
 
 interface Options {
   name: string,
@@ -53,6 +54,7 @@ export class HTMXComponents {
     this.context = this.context.bind(this)
     this.registryPage = this.registryPage.bind(this)
     this.webComponent = this.webComponent.bind(this)
+    this.clientCode = this.clientCode.bind(this)
     this.routes = [...this.routes, ...this.webComponents]
   }
 
@@ -72,18 +74,24 @@ export class HTMXComponents {
     return new SimpleRoute(req, res)
   }
 
-  webComponentsFroRoutes (routes: Routes): WebComponent[] {
+  webComponentsFromRoutes (routes: Routes): WebComponent[] {
     return routes.filter(v => isWebComponent(v)) as any
+  }
+
+  clientCodeFromRoutes (routes: Routes): WebComponent[] {
+    return routes.filter(v => isClientCode(v)) as any
   }
 
   async serve (routes: Routes = []) {
     let b: Bundler | undefined = undefined
 
     const allRoutes = [...this.routes, ...routes]
-    const webComponents = this.webComponentsFroRoutes(allRoutes)
+    const webComponents = this.webComponentsFromRoutes(allRoutes)
+    const clientCode = this.clientCodeFromRoutes(allRoutes)
 
-    if (webComponents.length) {
-      b = new Bundler(webComponents.map(v => v.entry))
+    if (webComponents.length || clientCode.length) {
+      const files = [...webComponents.map(v => v.entry), ...clientCode.map(v => v.entry)]
+      b = new Bundler(files)
       await b.bundle()
     }
 
@@ -101,12 +109,20 @@ export class HTMXComponents {
         return new Response(data, { headers: { "Content-Type": 'text/javascript' }, status: 200 });
       }
 
+      if (isClientCode(route)) {
+        if (!b) return fourOhFour
+        const data = await b.get(route.externalId)
+        return new Response(data, { headers: { "Content-Type": 'text/javascript' }, status: 200 });
+      }
+
       if (route) {
         const results = route.urlPattern.exec(request.url)
         const params = results?.pathname.groups
         const Comp = route.Wrap as any
-        const scripts = webComponents.map(c => c.script)
-        const wrapped = route instanceof ComponentMethodsRaw ? <Comp {...params}/> : <Layout head={scripts}><Comp {...params}/></Layout>
+        const webComponentScripts = webComponents.map(c => c.script)
+        // const clientCodeScripts = clientCode.map(c => c.script)
+        const clientCodeScripts: any = []
+        const wrapped = route instanceof ComponentMethodsRaw ? <Comp {...params}/> : <Layout head={[...webComponentScripts, ...clientCodeScripts]}><Comp {...params}/></Layout>
         const html = await render(wrapped, { request, ...route.context })
         return new Response(html, { headers: { "Content-Type": 'text/html' }, status: 200 });
       }
@@ -156,6 +172,12 @@ export class HTMXComponents {
     return webComponent;
   }
 
+  clientCode <T extends Record<string, unknown>>(...args: Parameters<typeof defineClientCode>) {
+    const clientCode = defineClientCode<T>(...args)
+    this.routes.push(clientCode)
+    return clientCode;
+  }
+
   static main () {
     return new HTMXComponents('unknown')
   }
@@ -164,6 +186,7 @@ export class HTMXComponents {
     // this.routes = [...this.routes, ...webComponents];
     return this.routes.map(route => {
       if (isWebComponent(route)) return route
+      if (isClientCode(route)) return route
       if (route instanceof SimpleRoute) return route
       return route.clone(context)
     })
