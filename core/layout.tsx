@@ -1,6 +1,6 @@
 import { ComponentChild } from "preact"
 
-export const Layout = (props: { children: ComponentChild }) => {
+export const Layout = (props: { children: ComponentChild, head?: ComponentChild }) => {
   return (
     <html>
       <head>
@@ -9,6 +9,7 @@ export const Layout = (props: { children: ComponentChild }) => {
           integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV"
           crossOrigin="anonymous">
         </script>
+        {props.head}
       </head>
       <body>
         {props.children}

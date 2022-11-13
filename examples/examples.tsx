@@ -4,6 +4,7 @@ import { routes as clickToEdit, Contact, Edit } from './1.click-to-edit.tsx';
 import { routes as bulkUpdate, People } from './2.bulk-update.tsx';
 import { routes as clickToLoad, ClickToLoad } from './3.click-to-load.tsx';
 import { routes as deleteRow, DeleteRowExample } from './4.delete-row.tsx';
+import { routes as webComponent, WebComponentExample } from './99.web-component.tsx';
 
 const { component, routes } = new HTMXComponents('@reggi/examples')
 
@@ -28,6 +29,10 @@ const Home = component('/', async () => (
     <ul>
       <li><DeleteRowExample.anchor.href boost>Delete Row Example</DeleteRowExample.anchor.href></li>
     </ul>
+    <h1>Web Component</h1>
+    <ul>
+      <li><WebComponentExample.anchor.href boost>Web Component</WebComponentExample.anchor.href></li>
+    </ul>
   </Fragment>
 ))
 
@@ -36,5 +41,6 @@ await serve([
   ...clickToEdit,
   ...bulkUpdate,
   ...clickToLoad,
-  ...deleteRow
+  ...deleteRow,
+  ...webComponent
 ])
