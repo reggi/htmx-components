@@ -1,8 +1,8 @@
 
 import * as path from "https://deno.land/std@0.163.0/path/mod.ts";
-import { encode } from "https://deno.land/std@0.99.0/encoding/base64.ts";
+// import { encode } from "https://deno.land/std@0.99.0/encoding/base64.ts";
 
-const genImport = (code: string) => new URL(`data:application/typescript;base64,${encode(code)}`)
+// const genImport = (code: string) => new URL(`data:application/typescript;base64,${encode(code)}`)
 
 const template = (path: string, resolved: string) => "  " + `
   "${path}": {
