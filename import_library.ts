@@ -8,4 +8,8 @@ export const library = {
     path: "/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts",
     code: () => import("/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts")
   },
+  "./client_code/multi.ts": {
+    path: "/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts",
+    code: () => import("/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts")
+  },
 }

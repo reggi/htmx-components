@@ -6,5 +6,9 @@
   "../examples/client_code/multi.ts": {
     "path": "/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts",
     "asUsed": "../examples/client_code/multi.ts"
+  },
+  "./client_code/multi.ts": {
+    "path": "/Users/thomasreggi/Documents/GitHub/htmx-components/examples/client_code/multi.ts",
+    "asUsed": "./client_code/multi.ts"
   }
 }

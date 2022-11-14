@@ -5,5 +5,11 @@ import {clientImport} from '../core/client_import.ts'
 const a = await clientImport(import.meta.url, "../examples/web_components/content_warning.ts")
 const b = await clientImport(import.meta.url, "../examples/client_code/multi.ts")
 
+console.log(a.path)
+
+const x = await b.code()
+
+console.log(x.Dog)
+
 console.log(a)
 console.log(b)
