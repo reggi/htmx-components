@@ -1,7 +1,7 @@
 {
   "tasks": {
     "test": "deno test --config ./tsconfig.json",
-    "start": "deno run --allow-net --watch -r example.tsx",
+    "start": "deno task all-examples",
     "all-examples": "export NO_SERVE=true && deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/examples.tsx",
     "click-to-edit": "deno run --allow-env --allow-net --watch ./examples/1.click-to-edit.tsx",
     "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx",
