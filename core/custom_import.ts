@@ -33,21 +33,17 @@ const resolveHere = (v: string) => {
   return path.resolve(path.dirname(import.meta.url.replace('file://', '')), v)
 }
 
+import { importModule } from 'https://deno.land/x/import@v0.1.6/mod.ts'
+
 async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promise<T>): Promise<T> {
   if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
-    const v = resolveHere(g)
-    console.log(v)
-    const file = await Deno.readTextFile(v)
-    console.log(file)
-    return import(genImport(file).href)
+    return importModule(g) as any
   }
   return maintainTypes()
 }
 
-const file = await denoDeployCompatImport('../import_library.ts', () => import('../import_library.ts'))
-console.log(file)
-
-const { library } = await import('../import_library.ts').catch(() => ({ library: undefined }))
+const { library } = await denoDeployCompatImport('import_library', () => import('../import_library.ts'))
+  .catch(() => ({ library: undefined }))
 
 export type RawLibraryType = typeof library
 export type LibraryType = NonNullable<RawLibraryType>
@@ -67,10 +63,6 @@ const removeFilePrefix = (url: string) => url.replace('file://', '')
 
 export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K, fn: (p: string, c: () => Promise<unknown>) => unknown) {
   const lib = library ? library : {} as LibraryType
-
-  console.log(lib)
-  console.log(p)
-
   if (p in lib) return fn(lib[p].path, lib[p].code)
   // because the import doesn't exist it won't be typed in lib
   const requestingImport: string = p as string
@@ -79,16 +71,13 @@ export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K
   const relativeToCallee = (url: string) => path.resolve(calleeParent, url)
 
   const importLibraryJSON = resolveHere('../import_library.json')
-  console.log('here -> You keep using that word. I do not think it means what you think it means.')
-  console.log({ importLibraryJSON })
   await touchFile(importLibraryJSON)
-  console.log('are we past this point???')
   const data = await Deno.readTextFile(importLibraryJSON)
   const importLibrary: ImportLibraryJSON = data === '' ? {} : JSON.parse(data)
   
   const absolutePath = relativeToCallee(requestingImport)
   const relativePath = relativeToBasePath(absolutePath)
-  console.log({ callee, calleeParent, basePath, requestingImport, absolutePath, relativePath})
+  // console.log({ callee, calleeParent, basePath, requestingImport, absolutePath, relativePath})
 
   const updatedImportLibrary = { ...importLibrary, [requestingImport]: { path: relativePath, asUsed: requestingImport }}
   const inner = Object.values(updatedImportLibrary).map(v => template(v.asUsed, v.path)).join('\n')

@@ -1,5 +1,6 @@
 {
   "imports": {
+    "import_library": "./import_library.ts",
     "$std/": "https://deno.land/std@0.161.0/",
     "$fresh/": "https://deno.land/x/fresh@1.1.2/",
     "preact": "https://esm.sh/preact@10.11.2",
