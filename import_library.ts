@@ -1,6 +1,4 @@
-
-import * as path from "https://deno.land/std/path/mod.ts";
-export const basePath = path.dirname(import.meta.url.replace(/^file:\/\//, ''))
+export const basePath = Deno.cwd()
 
 export const library = {
   "./client_code/multi.ts": {
