@@ -61,6 +61,8 @@ export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K
   const relativeToCallee = (url: string) => path.resolve(calleeParent, url)
 
   const importLibraryJSON = resolveHere('../import_library.json')
+  console.log('here -> You keep using that word. I do not think it means what you think it means.')
+  console.log({ importLibraryJSON })
   await touchFile(importLibraryJSON)
   const data = await Deno.readTextFile(importLibraryJSON)
   const importLibrary: ImportLibraryJSON = data === '' ? {} : JSON.parse(data)
