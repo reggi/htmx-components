@@ -23,7 +23,7 @@ export class BundleFile extends RouteFile {
 
 /** this is the public pathname the javascript file will live */
 export function bundleShared (path: string) {
-  const arrA = Deno.mainModule.replace('file://', '').split(nodePath.SEP)
+  const arrA = Deno.cwd().split(nodePath.SEP)
   const arrB = path.split(nodePath.SEP)
   const sharedParts = arrA.filter(x => arrB.includes(x))
   const shared = nodePath.join('/', ...sharedParts)
