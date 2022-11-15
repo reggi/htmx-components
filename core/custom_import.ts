@@ -43,7 +43,7 @@ async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promi
 }
 
 const { library } = await denoDeployCompatImport('import_library', () => import('../import_library.ts'))
-  .catch(() => ({ library: undefined }))
+  // .catch(() => ({ library: undefined }))
 
 export type RawLibraryType = typeof library
 export type LibraryType = NonNullable<RawLibraryType>
@@ -63,7 +63,7 @@ const removeFilePrefix = (url: string) => url.replace('file://', '')
 
 export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K, fn: (p: string, c: () => Promise<unknown>) => unknown) {
   console.log(library)
-  
+
   const lib = library ? library : {} as LibraryType
   if (p in lib) return fn(lib[p].path, lib[p].code)
   // because the import doesn't exist it won't be typed in lib
