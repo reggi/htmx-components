@@ -2,9 +2,9 @@
 
 import {clientImport} from '../core/client_import.ts'
 
-const a = clientImport("../examples/web_components/content_warning.ts")
-const b = clientImport("../examples/client_code/multi.ts")
+const a = await clientImport("./web_components/content_warning.ts")
+const b = await clientImport("./client_code/multi.ts")
 
 console.log(a.path)
 console.log(b.path)
-console.log(b.alice('hello'))
+console.log(b.exports.alice('hi'))
