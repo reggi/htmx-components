@@ -1,5 +1,6 @@
 
 import { customImport, LibraryImport, LibraryKeys } from "./custom_import.ts";
+import { metaUrl } from "./meta_url.ts";
 
 export const IMPORT_PATH = Symbol('IMPORT_PATH')
 
@@ -13,6 +14,6 @@ export async function _embededImport <G>(
 
 type EmbededImport<G> = G & { [IMPORT_PATH]: string }
 
-export function embededImport<K extends LibraryKeys>(metaUrl: string, p: K): Promise<EmbededImport<LibraryImport<K>>> {
-  return customImport(metaUrl, p, _embededImport) as Promise<EmbededImport<LibraryImport<K>>>;
+export function embededImport<K extends LibraryKeys>(p: K): Promise<EmbededImport<LibraryImport<K>>> {
+  return customImport(metaUrl(), p, _embededImport) as Promise<EmbededImport<LibraryImport<K>>>;
 }

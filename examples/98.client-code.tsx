@@ -1,37 +1,15 @@
 import { Fragment } from "preact";
-import { HTMXComponents } from "../mod.tsx";
+import { HTMX, HTMXComponents } from "../mod.tsx";
 
-const { component, serve, routes, clientCode } = new HTMXComponents('@reggi/client-code')
+const { component, serve, routes, clientImport } = new HTMXComponents('@reggi/client-code')
 
-export const ClientCodeExample = clientCode(
-  new URL('./client_code/example.ts', import.meta.url).href
-)
-
-export const OnLoad = component('/client-code-on-load', () => {
-  return (
-    <div>
-      hi! check the logs client code should have ran on load!
-      <ClientCodeExample/>
-    </div>
-  )
-})
+const multi = await clientImport('./client_code/multi.ts')
 
 export const OnClick = component('/client-code-on-click', () => {
   return (
     <Fragment>
-      <ClientCodeExample.scriptModule/>
-
-      <ClientCodeExample.div.onClick>
-        fancy clicker
-      </ClientCodeExample.div.onClick>
-
-      <br/><br/><br/><br/>
-
-      {/* // deno-lint-ignore ban-ts-comment
-      // @ts-ignore */}
-      <div onclick={ClientCodeExample.run()}>
-        hi! click me and it should load client code
-      </div>
+      <HTMX.div onclick={multi.alice('hello')}>Do something</HTMX.div>
+      <HTMX.div onclick={multi.bob('welcome')}>Do something else</HTMX.div>
     </Fragment>
   )
 })

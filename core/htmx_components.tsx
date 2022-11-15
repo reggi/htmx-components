@@ -8,6 +8,9 @@ import { ComponentChild, ComponentChildren, JSX } from 'preact'
 import { defineWebComponent, isWebComponent, WebComponent } from "./web_component.tsx";
 import { Bundler } from "../esbuild/bundle.ts";
 import { ClientCode, defineClientCode, isClientCode } from "./client_code.tsx";
+import { LibraryKeys } from "./custom_import.ts";
+import { clientImport, ClientImport, LibraryImport } from "./client_import.ts";
+import { BundleFile } from "./bundle_file.ts";
 
 export type ComponentWithMethods<C extends GenericProps> = GC<C> & ComponentMethods<C>
 
@@ -33,7 +36,7 @@ class SimpleRoute {
   ) {}
 }
 
-type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent | ClientCode)[]
+type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent | ClientCode | BundleFile)[]
 
 interface Options {
   name: string,
@@ -54,7 +57,7 @@ export class HTMXComponents {
     this.context = this.context.bind(this)
     this.registryPage = this.registryPage.bind(this)
     this.webComponent = this.webComponent.bind(this)
-    this.clientCode = this.clientCode.bind(this)
+    this.clientImport = this.clientImport.bind(this)
     this.routes = [...this.routes, ...this.webComponents]
   }
 
@@ -78,16 +81,17 @@ export class HTMXComponents {
     return routes.filter(v => isWebComponent(v)) as any
   }
 
-  clientCodeFromRoutes (routes: Routes): WebComponent[] {
-    return routes.filter(v => isClientCode(v)) as any
+  clientImportRoutes (routes: Routes): BundleFile[] {
+    return routes.filter(v => (v instanceof BundleFile)) as any
   }
 
+  
   async serve (routes: Routes = []) {
     let b: Bundler | undefined = undefined
 
     const allRoutes = [...this.routes, ...routes]
     const webComponents = this.webComponentsFromRoutes(allRoutes)
-    const clientCode = this.clientCodeFromRoutes(allRoutes)
+    const clientCode = this.clientImportRoutes(allRoutes)
 
     if (webComponents.length || clientCode.length) {
       const files = [...webComponents.map(v => v.entry), ...clientCode.map(v => v.entry)]
@@ -106,6 +110,12 @@ export class HTMXComponents {
       if (isWebComponent(route)) {
         if (!b) return fourOhFour
         const data = await b.get(route.externalId)
+        return new Response(data, { headers: { "Content-Type": 'text/javascript' }, status: 200 });
+      }
+
+      if (route instanceof BundleFile) {
+        if (!b) return fourOhFour
+        const data = await b.get(route.bundleId)
         return new Response(data, { headers: { "Content-Type": 'text/javascript' }, status: 200 });
       }
 
@@ -172,10 +182,11 @@ export class HTMXComponents {
     return webComponent;
   }
 
-  clientCode <T extends Record<string, unknown>>(...args: Parameters<typeof defineClientCode>) {
-    const clientCode = defineClientCode<T>(...args)
-    this.routes.push(clientCode)
-    return clientCode;
+  async clientImport <K extends LibraryKeys>(filePath: K): Promise<ClientImport<LibraryImport<K>>['exports']> {
+    const data = await clientImport(filePath)
+    const bf = new BundleFile(data.path)
+    this.routes.push(bf)
+    return data.exports
   }
 
   static main () {
@@ -187,6 +198,7 @@ export class HTMXComponents {
     return this.routes.map(route => {
       if (isWebComponent(route)) return route
       if (isClientCode(route)) return route
+      if (route instanceof BundleFile) return route
       if (route instanceof SimpleRoute) return route
       return route.clone(context)
     })

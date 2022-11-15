@@ -118,6 +118,8 @@ export interface HTMXProps extends HTMXSwapProps, HTMXMethodAttributes {
   reqCredsSameOrigin?: boolean
   reqCredsInclude?: boolean
   reqNoHeaders?: boolean
+  // deno-lint-ignore no-explicit-any
+  onclick?: any
 }
 
 export const decap = (string: string) => {

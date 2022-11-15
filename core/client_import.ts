@@ -1,20 +1,18 @@
 import { constructImport } from "./construct.ts";
 import { customImport, LibraryImport, LibraryKeys } from "./custom_import.ts";
+import { metaUrl } from "./meta_url.ts";
+export * from "./custom_import.ts";
 
 export function _clientImport <G>(
   path: string,
   code: () => Promise<G>
 ) {
-  const construct = constructImport(code)
-  return { path, construct, code }
+  const exports = constructImport(path, code)
+  return { exports, path }
 }
 
-interface ClientImport<G> {
-  path: string;
-  construct: G;
-  code: () => Promise<G>;
-}
+export type ClientImport<G> = { exports: G, path: string}
 
-export function clientImport<K extends LibraryKeys>(metaUrl: string, p: K): Promise<ClientImport<LibraryImport<K>>> {
-  return customImport(metaUrl, p, _clientImport) as Promise<ClientImport<LibraryImport<K>>>;
+export function clientImport<K extends LibraryKeys>(p: K): Promise<ClientImport<LibraryImport<K>>> {
+  return customImport(metaUrl(), p, _clientImport) as Promise<ClientImport<LibraryImport<K>>>;
 }
