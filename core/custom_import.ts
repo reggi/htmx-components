@@ -42,7 +42,7 @@ async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promi
   return maintainTypes()
 }
 
-const file = denoDeployCompatImport('../import_library.ts', () => import('../import_library.ts'))
+const file = await denoDeployCompatImport('../import_library.ts', () => import('../import_library.ts'))
 console.log(file)
 
 const { library } = await import('../import_library.ts').catch(() => ({ library: undefined }))
