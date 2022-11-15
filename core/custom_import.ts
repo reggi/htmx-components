@@ -33,16 +33,13 @@ const resolveHere = (v: string) => {
   return path.resolve(path.dirname(import.meta.url.replace('file://', '')), v)
 }
 
-import { importModule } from 'https://deno.land/x/import@v0.1.6/mod.ts'
+import { importModule } from '../dynamic_import/mod.ts'
 
-const x = await importModule('import_library')
-console.log({x})
-
-async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promise<T>): Promise<T> {
+async function denoDeployCompatImport <T> (g: string, _maintainTypes: () => Promise<T>): Promise<T> {
   if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
     return importModule(g) as any
   }
-  return maintainTypes()
+  return importModule(g) as any
 }
 
 const { library } = await denoDeployCompatImport('import_library', () => import('../import_library.ts'))
@@ -65,8 +62,6 @@ const touchFile = async (file: string) => {
 const removeFilePrefix = (url: string) => url.replace('file://', '')
 
 export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K, fn: (p: string, c: () => Promise<unknown>) => unknown) {
-  console.log(library)
-
   const lib = library ? library : {} as LibraryType
   if (p in lib) return fn(lib[p].path, lib[p].code)
   // because the import doesn't exist it won't be typed in lib
