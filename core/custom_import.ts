@@ -64,6 +64,7 @@ export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K
   console.log('here -> You keep using that word. I do not think it means what you think it means.')
   console.log({ importLibraryJSON })
   await touchFile(importLibraryJSON)
+  console.log('are we past this point???')
   const data = await Deno.readTextFile(importLibraryJSON)
   const importLibrary: ImportLibraryJSON = data === '' ? {} : JSON.parse(data)
   
@@ -74,9 +75,13 @@ export async function customImport <K extends LibraryKeys>(metaUrl: string, p: K
   const updatedImportLibrary = { ...importLibrary, [requestingImport]: { path: relativePath, asUsed: requestingImport }}
   const inner = Object.values(updatedImportLibrary).map(v => template(v.asUsed, v.path)).join('\n')
   const importLibaryTS = wrapper(inner)
-  await Promise.all([
-    Deno.writeTextFile(importLibraryJSON, JSON.stringify(updatedImportLibrary, null, 2)),
-    Deno.writeTextFile(resolveHere('../import_library.ts'), importLibaryTS)
-  ])
+  try {
+    await Promise.all([
+      Deno.writeTextFile(importLibraryJSON, JSON.stringify(updatedImportLibrary, null, 2)),
+      Deno.writeTextFile(resolveHere('../import_library.ts'), importLibaryTS)
+    ])
+  } catch {
+    console.log('failed to write to import_library.ts')
+  }
   return fn(absolutePath, () => import(absolutePath))
 }
