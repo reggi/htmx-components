@@ -1,5 +1,3 @@
-import { ensureEsbuildInitialized } from '../esbuild/bundle.ts'
-
 import {
 	esbuildNative,
 	esbuildWASM,
@@ -83,8 +81,36 @@ async function getDenoCompilerOptions() {
 	return null
 }
 
+
+
+
+let esbuildInitialized: boolean | Promise<void> = false;
+export async function ensureEsbuildInitialized() {
+  if (esbuildInitialized === false) {
+    if (Deno.run === undefined) {
+      const wasmURL = new URL("./esbuild_v0.14.51.wasm", import.meta.url).href;
+      esbuildInitialized = fetch(wasmURL).then(async (r) => {
+        const resp = new Response(r.body, {
+          headers: { "Content-Type": "application/wasm" },
+        });
+        const wasmModule = await WebAssembly.compileStreaming(resp);
+        await esbuild.initialize({
+          wasmModule,
+          worker: typeof Worker !== 'undefined'
+        });
+      });
+    } else {
+      esbuild.initialize({});
+    }
+    await esbuildInitialized;
+    esbuildInitialized = true;
+  } else if (esbuildInitialized instanceof Promise) {
+    await esbuildInitialized;
+  }
+}
+
 async function buildAndEvaluate(options: Record<string, unknown>) {
-	!isDenoCLI && await ensureEsbuildInitialized();
+	!isDenoCLI && await ensureEsbuildInitialized()
 
 	const buildResult = await esbuild.build(
 		Object.assign(options, sharedEsbuildOptions),
