@@ -8,8 +8,8 @@ const multi = await clientImport('./client_code/multi.ts')
 export const OnClick = component('/client-code-on-click', () => {
   return (
     <Fragment>
-      <HTMX.div onclick={multi.alice('hello')}>Do something</HTMX.div>
-      <HTMX.div onclick={multi.bob('welcome')}>Do something else</HTMX.div>
+      <HTMX.div onClick={multi.alice('hello')}>Do something</HTMX.div>
+      <HTMX.div onClick={multi.bob('welcome')}>Do something else</HTMX.div>
     </Fragment>
   )
 })

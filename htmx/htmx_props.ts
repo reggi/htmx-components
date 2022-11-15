@@ -120,6 +120,8 @@ export interface HTMXProps extends HTMXSwapProps, HTMXMethodAttributes {
   reqNoHeaders?: boolean
   // deno-lint-ignore no-explicit-any
   onclick?: any
+  // deno-lint-ignore no-explicit-any
+  onClick?: any
 }
 
 export const decap = (string: string) => {
@@ -220,6 +222,9 @@ export const resolveHTMXProps = (props: HTMXProps) => {
 
   if (sync) build.push({ 'hx-sync': sync })
   if (ws) build.push({ 'hx-ws': ws })
+
+  if (props.onClick) build.push({ 'onclick': props.onClick })
+
   return Object.assign(rest, ...build)
 }
 
