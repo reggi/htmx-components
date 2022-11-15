@@ -42,7 +42,7 @@ export type LibraryImport<K extends LibraryKeys> = Awaited<ReturnType<LibraryTyp
 
 const touchFile = async (file: string) => {
   try {
-    await Deno.open(file);
+    await Deno.open(file, { read: true, write: false });
   } catch(e) {
     if(e instanceof Deno.errors.NotFound)
       await Deno.create(file);
