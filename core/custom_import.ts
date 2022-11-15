@@ -35,6 +35,9 @@ const resolveHere = (v: string) => {
 
 import { importModule } from 'https://deno.land/x/import@v0.1.6/mod.ts'
 
+const x = await importModule('import_library')
+console.log(x)
+
 async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promise<T>): Promise<T> {
   if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
     return importModule(g) as any
