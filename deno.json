@@ -4,6 +4,7 @@
     "test": "deno test --config ./tsconfig.json",
     "start": "deno task all-examples",
     "all-examples": "export NO_SERVE=true && deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/examples.tsx",
+    "examples": "deno task all-examples",
     "click-to-edit": "deno run --allow-env --allow-net --watch ./examples/1.click-to-edit.tsx",
     "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx",
     "click-to-load": "deno run --allow-env --allow-net --watch ./examples/3.click-to-load.tsx",
