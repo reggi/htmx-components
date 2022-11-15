@@ -1,4 +1,4 @@
-export const $element = (props: JSX.IntrinsicElements["$element"] & HTMXProps) => {
+export function $element (props: Omit<JSX.IntrinsicElements["$element"], 'onClick'> & HTMXProps) {
   return <$element {...resolveHTMXProps(props)}>{props.children}</$element>
 }
 export const $elementUpper = $element

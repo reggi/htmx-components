@@ -1,658 +1,658 @@
 import { JSX } from 'preact' 
 import { resolveHTMXProps, HTMXProps } from './htmx_props.ts'
-export const a = (props: JSX.IntrinsicElements["a"] & HTMXProps) => {
+export function a (props: Omit<JSX.IntrinsicElements["a"], 'onClick'> & HTMXProps) {
   return <a {...resolveHTMXProps(props)}>{props.children}</a>
 }
 export const A = a
-export const abbr = (props: JSX.IntrinsicElements["abbr"] & HTMXProps) => {
+export function abbr (props: Omit<JSX.IntrinsicElements["abbr"], 'onClick'> & HTMXProps) {
   return <abbr {...resolveHTMXProps(props)}>{props.children}</abbr>
 }
 export const Abbr = abbr
-export const address = (props: JSX.IntrinsicElements["address"] & HTMXProps) => {
+export function address (props: Omit<JSX.IntrinsicElements["address"], 'onClick'> & HTMXProps) {
   return <address {...resolveHTMXProps(props)}>{props.children}</address>
 }
 export const Address = address
-export const area = (props: JSX.IntrinsicElements["area"] & HTMXProps) => {
+export function area (props: Omit<JSX.IntrinsicElements["area"], 'onClick'> & HTMXProps) {
   return <area {...resolveHTMXProps(props)}>{props.children}</area>
 }
 export const Area = area
-export const article = (props: JSX.IntrinsicElements["article"] & HTMXProps) => {
+export function article (props: Omit<JSX.IntrinsicElements["article"], 'onClick'> & HTMXProps) {
   return <article {...resolveHTMXProps(props)}>{props.children}</article>
 }
 export const Article = article
-export const aside = (props: JSX.IntrinsicElements["aside"] & HTMXProps) => {
+export function aside (props: Omit<JSX.IntrinsicElements["aside"], 'onClick'> & HTMXProps) {
   return <aside {...resolveHTMXProps(props)}>{props.children}</aside>
 }
 export const Aside = aside
-export const audio = (props: JSX.IntrinsicElements["audio"] & HTMXProps) => {
+export function audio (props: Omit<JSX.IntrinsicElements["audio"], 'onClick'> & HTMXProps) {
   return <audio {...resolveHTMXProps(props)}>{props.children}</audio>
 }
 export const Audio = audio
-export const b = (props: JSX.IntrinsicElements["b"] & HTMXProps) => {
+export function b (props: Omit<JSX.IntrinsicElements["b"], 'onClick'> & HTMXProps) {
   return <b {...resolveHTMXProps(props)}>{props.children}</b>
 }
 export const B = b
-export const base = (props: JSX.IntrinsicElements["base"] & HTMXProps) => {
+export function base (props: Omit<JSX.IntrinsicElements["base"], 'onClick'> & HTMXProps) {
   return <base {...resolveHTMXProps(props)}>{props.children}</base>
 }
 export const Base = base
-export const bdi = (props: JSX.IntrinsicElements["bdi"] & HTMXProps) => {
+export function bdi (props: Omit<JSX.IntrinsicElements["bdi"], 'onClick'> & HTMXProps) {
   return <bdi {...resolveHTMXProps(props)}>{props.children}</bdi>
 }
 export const Bdi = bdi
-export const bdo = (props: JSX.IntrinsicElements["bdo"] & HTMXProps) => {
+export function bdo (props: Omit<JSX.IntrinsicElements["bdo"], 'onClick'> & HTMXProps) {
   return <bdo {...resolveHTMXProps(props)}>{props.children}</bdo>
 }
 export const Bdo = bdo
-export const big = (props: JSX.IntrinsicElements["big"] & HTMXProps) => {
+export function big (props: Omit<JSX.IntrinsicElements["big"], 'onClick'> & HTMXProps) {
   return <big {...resolveHTMXProps(props)}>{props.children}</big>
 }
 export const Big = big
-export const blockquote = (props: JSX.IntrinsicElements["blockquote"] & HTMXProps) => {
+export function blockquote (props: Omit<JSX.IntrinsicElements["blockquote"], 'onClick'> & HTMXProps) {
   return <blockquote {...resolveHTMXProps(props)}>{props.children}</blockquote>
 }
 export const Blockquote = blockquote
-export const body = (props: JSX.IntrinsicElements["body"] & HTMXProps) => {
+export function body (props: Omit<JSX.IntrinsicElements["body"], 'onClick'> & HTMXProps) {
   return <body {...resolveHTMXProps(props)}>{props.children}</body>
 }
 export const Body = body
-export const br = (props: JSX.IntrinsicElements["br"] & HTMXProps) => {
+export function br (props: Omit<JSX.IntrinsicElements["br"], 'onClick'> & HTMXProps) {
   return <br {...resolveHTMXProps(props)}>{props.children}</br>
 }
 export const Br = br
-export const button = (props: JSX.IntrinsicElements["button"] & HTMXProps) => {
+export function button (props: Omit<JSX.IntrinsicElements["button"], 'onClick'> & HTMXProps) {
   return <button {...resolveHTMXProps(props)}>{props.children}</button>
 }
 export const Button = button
-export const canvas = (props: JSX.IntrinsicElements["canvas"] & HTMXProps) => {
+export function canvas (props: Omit<JSX.IntrinsicElements["canvas"], 'onClick'> & HTMXProps) {
   return <canvas {...resolveHTMXProps(props)}>{props.children}</canvas>
 }
 export const Canvas = canvas
-export const caption = (props: JSX.IntrinsicElements["caption"] & HTMXProps) => {
+export function caption (props: Omit<JSX.IntrinsicElements["caption"], 'onClick'> & HTMXProps) {
   return <caption {...resolveHTMXProps(props)}>{props.children}</caption>
 }
 export const Caption = caption
-export const cite = (props: JSX.IntrinsicElements["cite"] & HTMXProps) => {
+export function cite (props: Omit<JSX.IntrinsicElements["cite"], 'onClick'> & HTMXProps) {
   return <cite {...resolveHTMXProps(props)}>{props.children}</cite>
 }
 export const Cite = cite
-export const code = (props: JSX.IntrinsicElements["code"] & HTMXProps) => {
+export function code (props: Omit<JSX.IntrinsicElements["code"], 'onClick'> & HTMXProps) {
   return <code {...resolveHTMXProps(props)}>{props.children}</code>
 }
 export const Code = code
-export const col = (props: JSX.IntrinsicElements["col"] & HTMXProps) => {
+export function col (props: Omit<JSX.IntrinsicElements["col"], 'onClick'> & HTMXProps) {
   return <col {...resolveHTMXProps(props)}>{props.children}</col>
 }
 export const Col = col
-export const colgroup = (props: JSX.IntrinsicElements["colgroup"] & HTMXProps) => {
+export function colgroup (props: Omit<JSX.IntrinsicElements["colgroup"], 'onClick'> & HTMXProps) {
   return <colgroup {...resolveHTMXProps(props)}>{props.children}</colgroup>
 }
 export const Colgroup = colgroup
-export const data = (props: JSX.IntrinsicElements["data"] & HTMXProps) => {
+export function data (props: Omit<JSX.IntrinsicElements["data"], 'onClick'> & HTMXProps) {
   return <data {...resolveHTMXProps(props)}>{props.children}</data>
 }
 export const Data = data
-export const datalist = (props: JSX.IntrinsicElements["datalist"] & HTMXProps) => {
+export function datalist (props: Omit<JSX.IntrinsicElements["datalist"], 'onClick'> & HTMXProps) {
   return <datalist {...resolveHTMXProps(props)}>{props.children}</datalist>
 }
 export const Datalist = datalist
-export const dd = (props: JSX.IntrinsicElements["dd"] & HTMXProps) => {
+export function dd (props: Omit<JSX.IntrinsicElements["dd"], 'onClick'> & HTMXProps) {
   return <dd {...resolveHTMXProps(props)}>{props.children}</dd>
 }
 export const Dd = dd
-export const del = (props: JSX.IntrinsicElements["del"] & HTMXProps) => {
+export function del (props: Omit<JSX.IntrinsicElements["del"], 'onClick'> & HTMXProps) {
   return <del {...resolveHTMXProps(props)}>{props.children}</del>
 }
 export const Del = del
-export const details = (props: JSX.IntrinsicElements["details"] & HTMXProps) => {
+export function details (props: Omit<JSX.IntrinsicElements["details"], 'onClick'> & HTMXProps) {
   return <details {...resolveHTMXProps(props)}>{props.children}</details>
 }
 export const Details = details
-export const dfn = (props: JSX.IntrinsicElements["dfn"] & HTMXProps) => {
+export function dfn (props: Omit<JSX.IntrinsicElements["dfn"], 'onClick'> & HTMXProps) {
   return <dfn {...resolveHTMXProps(props)}>{props.children}</dfn>
 }
 export const Dfn = dfn
-export const dialog = (props: JSX.IntrinsicElements["dialog"] & HTMXProps) => {
+export function dialog (props: Omit<JSX.IntrinsicElements["dialog"], 'onClick'> & HTMXProps) {
   return <dialog {...resolveHTMXProps(props)}>{props.children}</dialog>
 }
 export const Dialog = dialog
-export const div = (props: JSX.IntrinsicElements["div"] & HTMXProps) => {
+export function div (props: Omit<JSX.IntrinsicElements["div"], 'onClick'> & HTMXProps) {
   return <div {...resolveHTMXProps(props)}>{props.children}</div>
 }
 export const Div = div
-export const dl = (props: JSX.IntrinsicElements["dl"] & HTMXProps) => {
+export function dl (props: Omit<JSX.IntrinsicElements["dl"], 'onClick'> & HTMXProps) {
   return <dl {...resolveHTMXProps(props)}>{props.children}</dl>
 }
 export const Dl = dl
-export const dt = (props: JSX.IntrinsicElements["dt"] & HTMXProps) => {
+export function dt (props: Omit<JSX.IntrinsicElements["dt"], 'onClick'> & HTMXProps) {
   return <dt {...resolveHTMXProps(props)}>{props.children}</dt>
 }
 export const Dt = dt
-export const em = (props: JSX.IntrinsicElements["em"] & HTMXProps) => {
+export function em (props: Omit<JSX.IntrinsicElements["em"], 'onClick'> & HTMXProps) {
   return <em {...resolveHTMXProps(props)}>{props.children}</em>
 }
 export const Em = em
-export const embed = (props: JSX.IntrinsicElements["embed"] & HTMXProps) => {
+export function embed (props: Omit<JSX.IntrinsicElements["embed"], 'onClick'> & HTMXProps) {
   return <embed {...resolveHTMXProps(props)}>{props.children}</embed>
 }
 export const Embed = embed
-export const fieldset = (props: JSX.IntrinsicElements["fieldset"] & HTMXProps) => {
+export function fieldset (props: Omit<JSX.IntrinsicElements["fieldset"], 'onClick'> & HTMXProps) {
   return <fieldset {...resolveHTMXProps(props)}>{props.children}</fieldset>
 }
 export const Fieldset = fieldset
-export const figcaption = (props: JSX.IntrinsicElements["figcaption"] & HTMXProps) => {
+export function figcaption (props: Omit<JSX.IntrinsicElements["figcaption"], 'onClick'> & HTMXProps) {
   return <figcaption {...resolveHTMXProps(props)}>{props.children}</figcaption>
 }
 export const Figcaption = figcaption
-export const figure = (props: JSX.IntrinsicElements["figure"] & HTMXProps) => {
+export function figure (props: Omit<JSX.IntrinsicElements["figure"], 'onClick'> & HTMXProps) {
   return <figure {...resolveHTMXProps(props)}>{props.children}</figure>
 }
 export const Figure = figure
-export const footer = (props: JSX.IntrinsicElements["footer"] & HTMXProps) => {
+export function footer (props: Omit<JSX.IntrinsicElements["footer"], 'onClick'> & HTMXProps) {
   return <footer {...resolveHTMXProps(props)}>{props.children}</footer>
 }
 export const Footer = footer
-export const form = (props: JSX.IntrinsicElements["form"] & HTMXProps) => {
+export function form (props: Omit<JSX.IntrinsicElements["form"], 'onClick'> & HTMXProps) {
   return <form {...resolveHTMXProps(props)}>{props.children}</form>
 }
 export const Form = form
-export const h1 = (props: JSX.IntrinsicElements["h1"] & HTMXProps) => {
+export function h1 (props: Omit<JSX.IntrinsicElements["h1"], 'onClick'> & HTMXProps) {
   return <h1 {...resolveHTMXProps(props)}>{props.children}</h1>
 }
 export const H1 = h1
-export const h2 = (props: JSX.IntrinsicElements["h2"] & HTMXProps) => {
+export function h2 (props: Omit<JSX.IntrinsicElements["h2"], 'onClick'> & HTMXProps) {
   return <h2 {...resolveHTMXProps(props)}>{props.children}</h2>
 }
 export const H2 = h2
-export const h3 = (props: JSX.IntrinsicElements["h3"] & HTMXProps) => {
+export function h3 (props: Omit<JSX.IntrinsicElements["h3"], 'onClick'> & HTMXProps) {
   return <h3 {...resolveHTMXProps(props)}>{props.children}</h3>
 }
 export const H3 = h3
-export const h4 = (props: JSX.IntrinsicElements["h4"] & HTMXProps) => {
+export function h4 (props: Omit<JSX.IntrinsicElements["h4"], 'onClick'> & HTMXProps) {
   return <h4 {...resolveHTMXProps(props)}>{props.children}</h4>
 }
 export const H4 = h4
-export const h5 = (props: JSX.IntrinsicElements["h5"] & HTMXProps) => {
+export function h5 (props: Omit<JSX.IntrinsicElements["h5"], 'onClick'> & HTMXProps) {
   return <h5 {...resolveHTMXProps(props)}>{props.children}</h5>
 }
 export const H5 = h5
-export const h6 = (props: JSX.IntrinsicElements["h6"] & HTMXProps) => {
+export function h6 (props: Omit<JSX.IntrinsicElements["h6"], 'onClick'> & HTMXProps) {
   return <h6 {...resolveHTMXProps(props)}>{props.children}</h6>
 }
 export const H6 = h6
-export const head = (props: JSX.IntrinsicElements["head"] & HTMXProps) => {
+export function head (props: Omit<JSX.IntrinsicElements["head"], 'onClick'> & HTMXProps) {
   return <head {...resolveHTMXProps(props)}>{props.children}</head>
 }
 export const Head = head
-export const header = (props: JSX.IntrinsicElements["header"] & HTMXProps) => {
+export function header (props: Omit<JSX.IntrinsicElements["header"], 'onClick'> & HTMXProps) {
   return <header {...resolveHTMXProps(props)}>{props.children}</header>
 }
 export const Header = header
-export const hgroup = (props: JSX.IntrinsicElements["hgroup"] & HTMXProps) => {
+export function hgroup (props: Omit<JSX.IntrinsicElements["hgroup"], 'onClick'> & HTMXProps) {
   return <hgroup {...resolveHTMXProps(props)}>{props.children}</hgroup>
 }
 export const Hgroup = hgroup
-export const hr = (props: JSX.IntrinsicElements["hr"] & HTMXProps) => {
+export function hr (props: Omit<JSX.IntrinsicElements["hr"], 'onClick'> & HTMXProps) {
   return <hr {...resolveHTMXProps(props)}>{props.children}</hr>
 }
 export const Hr = hr
-export const html = (props: JSX.IntrinsicElements["html"] & HTMXProps) => {
+export function html (props: Omit<JSX.IntrinsicElements["html"], 'onClick'> & HTMXProps) {
   return <html {...resolveHTMXProps(props)}>{props.children}</html>
 }
 export const Html = html
-export const i = (props: JSX.IntrinsicElements["i"] & HTMXProps) => {
+export function i (props: Omit<JSX.IntrinsicElements["i"], 'onClick'> & HTMXProps) {
   return <i {...resolveHTMXProps(props)}>{props.children}</i>
 }
 export const I = i
-export const iframe = (props: JSX.IntrinsicElements["iframe"] & HTMXProps) => {
+export function iframe (props: Omit<JSX.IntrinsicElements["iframe"], 'onClick'> & HTMXProps) {
   return <iframe {...resolveHTMXProps(props)}>{props.children}</iframe>
 }
 export const Iframe = iframe
-export const img = (props: JSX.IntrinsicElements["img"] & HTMXProps) => {
+export function img (props: Omit<JSX.IntrinsicElements["img"], 'onClick'> & HTMXProps) {
   return <img {...resolveHTMXProps(props)}>{props.children}</img>
 }
 export const Img = img
-export const input = (props: JSX.IntrinsicElements["input"] & HTMXProps) => {
+export function input (props: Omit<JSX.IntrinsicElements["input"], 'onClick'> & HTMXProps) {
   return <input {...resolveHTMXProps(props)}>{props.children}</input>
 }
 export const Input = input
-export const ins = (props: JSX.IntrinsicElements["ins"] & HTMXProps) => {
+export function ins (props: Omit<JSX.IntrinsicElements["ins"], 'onClick'> & HTMXProps) {
   return <ins {...resolveHTMXProps(props)}>{props.children}</ins>
 }
 export const Ins = ins
-export const kbd = (props: JSX.IntrinsicElements["kbd"] & HTMXProps) => {
+export function kbd (props: Omit<JSX.IntrinsicElements["kbd"], 'onClick'> & HTMXProps) {
   return <kbd {...resolveHTMXProps(props)}>{props.children}</kbd>
 }
 export const Kbd = kbd
-export const keygen = (props: JSX.IntrinsicElements["keygen"] & HTMXProps) => {
+export function keygen (props: Omit<JSX.IntrinsicElements["keygen"], 'onClick'> & HTMXProps) {
   return <keygen {...resolveHTMXProps(props)}>{props.children}</keygen>
 }
 export const Keygen = keygen
-export const label = (props: JSX.IntrinsicElements["label"] & HTMXProps) => {
+export function label (props: Omit<JSX.IntrinsicElements["label"], 'onClick'> & HTMXProps) {
   return <label {...resolveHTMXProps(props)}>{props.children}</label>
 }
 export const Label = label
-export const legend = (props: JSX.IntrinsicElements["legend"] & HTMXProps) => {
+export function legend (props: Omit<JSX.IntrinsicElements["legend"], 'onClick'> & HTMXProps) {
   return <legend {...resolveHTMXProps(props)}>{props.children}</legend>
 }
 export const Legend = legend
-export const li = (props: JSX.IntrinsicElements["li"] & HTMXProps) => {
+export function li (props: Omit<JSX.IntrinsicElements["li"], 'onClick'> & HTMXProps) {
   return <li {...resolveHTMXProps(props)}>{props.children}</li>
 }
 export const Li = li
-export const link = (props: JSX.IntrinsicElements["link"] & HTMXProps) => {
+export function link (props: Omit<JSX.IntrinsicElements["link"], 'onClick'> & HTMXProps) {
   return <link {...resolveHTMXProps(props)}>{props.children}</link>
 }
 export const Link = link
-export const main = (props: JSX.IntrinsicElements["main"] & HTMXProps) => {
+export function main (props: Omit<JSX.IntrinsicElements["main"], 'onClick'> & HTMXProps) {
   return <main {...resolveHTMXProps(props)}>{props.children}</main>
 }
 export const Main = main
-export const map = (props: JSX.IntrinsicElements["map"] & HTMXProps) => {
+export function map (props: Omit<JSX.IntrinsicElements["map"], 'onClick'> & HTMXProps) {
   return <map {...resolveHTMXProps(props)}>{props.children}</map>
 }
 export const Map = map
-export const mark = (props: JSX.IntrinsicElements["mark"] & HTMXProps) => {
+export function mark (props: Omit<JSX.IntrinsicElements["mark"], 'onClick'> & HTMXProps) {
   return <mark {...resolveHTMXProps(props)}>{props.children}</mark>
 }
 export const Mark = mark
-export const marquee = (props: JSX.IntrinsicElements["marquee"] & HTMXProps) => {
+export function marquee (props: Omit<JSX.IntrinsicElements["marquee"], 'onClick'> & HTMXProps) {
   return <marquee {...resolveHTMXProps(props)}>{props.children}</marquee>
 }
 export const Marquee = marquee
-export const menu = (props: JSX.IntrinsicElements["menu"] & HTMXProps) => {
+export function menu (props: Omit<JSX.IntrinsicElements["menu"], 'onClick'> & HTMXProps) {
   return <menu {...resolveHTMXProps(props)}>{props.children}</menu>
 }
 export const Menu = menu
-export const menuitem = (props: JSX.IntrinsicElements["menuitem"] & HTMXProps) => {
+export function menuitem (props: Omit<JSX.IntrinsicElements["menuitem"], 'onClick'> & HTMXProps) {
   return <menuitem {...resolveHTMXProps(props)}>{props.children}</menuitem>
 }
 export const Menuitem = menuitem
-export const meta = (props: JSX.IntrinsicElements["meta"] & HTMXProps) => {
+export function meta (props: Omit<JSX.IntrinsicElements["meta"], 'onClick'> & HTMXProps) {
   return <meta {...resolveHTMXProps(props)}>{props.children}</meta>
 }
 export const Meta = meta
-export const meter = (props: JSX.IntrinsicElements["meter"] & HTMXProps) => {
+export function meter (props: Omit<JSX.IntrinsicElements["meter"], 'onClick'> & HTMXProps) {
   return <meter {...resolveHTMXProps(props)}>{props.children}</meter>
 }
 export const Meter = meter
-export const nav = (props: JSX.IntrinsicElements["nav"] & HTMXProps) => {
+export function nav (props: Omit<JSX.IntrinsicElements["nav"], 'onClick'> & HTMXProps) {
   return <nav {...resolveHTMXProps(props)}>{props.children}</nav>
 }
 export const Nav = nav
-export const noscript = (props: JSX.IntrinsicElements["noscript"] & HTMXProps) => {
+export function noscript (props: Omit<JSX.IntrinsicElements["noscript"], 'onClick'> & HTMXProps) {
   return <noscript {...resolveHTMXProps(props)}>{props.children}</noscript>
 }
 export const Noscript = noscript
-export const object = (props: JSX.IntrinsicElements["object"] & HTMXProps) => {
+export function object (props: Omit<JSX.IntrinsicElements["object"], 'onClick'> & HTMXProps) {
   return <object {...resolveHTMXProps(props)}>{props.children}</object>
 }
 export const Object = object
-export const ol = (props: JSX.IntrinsicElements["ol"] & HTMXProps) => {
+export function ol (props: Omit<JSX.IntrinsicElements["ol"], 'onClick'> & HTMXProps) {
   return <ol {...resolveHTMXProps(props)}>{props.children}</ol>
 }
 export const Ol = ol
-export const optgroup = (props: JSX.IntrinsicElements["optgroup"] & HTMXProps) => {
+export function optgroup (props: Omit<JSX.IntrinsicElements["optgroup"], 'onClick'> & HTMXProps) {
   return <optgroup {...resolveHTMXProps(props)}>{props.children}</optgroup>
 }
 export const Optgroup = optgroup
-export const option = (props: JSX.IntrinsicElements["option"] & HTMXProps) => {
+export function option (props: Omit<JSX.IntrinsicElements["option"], 'onClick'> & HTMXProps) {
   return <option {...resolveHTMXProps(props)}>{props.children}</option>
 }
 export const Option = option
-export const output = (props: JSX.IntrinsicElements["output"] & HTMXProps) => {
+export function output (props: Omit<JSX.IntrinsicElements["output"], 'onClick'> & HTMXProps) {
   return <output {...resolveHTMXProps(props)}>{props.children}</output>
 }
 export const Output = output
-export const p = (props: JSX.IntrinsicElements["p"] & HTMXProps) => {
+export function p (props: Omit<JSX.IntrinsicElements["p"], 'onClick'> & HTMXProps) {
   return <p {...resolveHTMXProps(props)}>{props.children}</p>
 }
 export const P = p
-export const param = (props: JSX.IntrinsicElements["param"] & HTMXProps) => {
+export function param (props: Omit<JSX.IntrinsicElements["param"], 'onClick'> & HTMXProps) {
   return <param {...resolveHTMXProps(props)}>{props.children}</param>
 }
 export const Param = param
-export const picture = (props: JSX.IntrinsicElements["picture"] & HTMXProps) => {
+export function picture (props: Omit<JSX.IntrinsicElements["picture"], 'onClick'> & HTMXProps) {
   return <picture {...resolveHTMXProps(props)}>{props.children}</picture>
 }
 export const Picture = picture
-export const pre = (props: JSX.IntrinsicElements["pre"] & HTMXProps) => {
+export function pre (props: Omit<JSX.IntrinsicElements["pre"], 'onClick'> & HTMXProps) {
   return <pre {...resolveHTMXProps(props)}>{props.children}</pre>
 }
 export const Pre = pre
-export const progress = (props: JSX.IntrinsicElements["progress"] & HTMXProps) => {
+export function progress (props: Omit<JSX.IntrinsicElements["progress"], 'onClick'> & HTMXProps) {
   return <progress {...resolveHTMXProps(props)}>{props.children}</progress>
 }
 export const Progress = progress
-export const q = (props: JSX.IntrinsicElements["q"] & HTMXProps) => {
+export function q (props: Omit<JSX.IntrinsicElements["q"], 'onClick'> & HTMXProps) {
   return <q {...resolveHTMXProps(props)}>{props.children}</q>
 }
 export const Q = q
-export const rp = (props: JSX.IntrinsicElements["rp"] & HTMXProps) => {
+export function rp (props: Omit<JSX.IntrinsicElements["rp"], 'onClick'> & HTMXProps) {
   return <rp {...resolveHTMXProps(props)}>{props.children}</rp>
 }
 export const Rp = rp
-export const rt = (props: JSX.IntrinsicElements["rt"] & HTMXProps) => {
+export function rt (props: Omit<JSX.IntrinsicElements["rt"], 'onClick'> & HTMXProps) {
   return <rt {...resolveHTMXProps(props)}>{props.children}</rt>
 }
 export const Rt = rt
-export const ruby = (props: JSX.IntrinsicElements["ruby"] & HTMXProps) => {
+export function ruby (props: Omit<JSX.IntrinsicElements["ruby"], 'onClick'> & HTMXProps) {
   return <ruby {...resolveHTMXProps(props)}>{props.children}</ruby>
 }
 export const Ruby = ruby
-export const s = (props: JSX.IntrinsicElements["s"] & HTMXProps) => {
+export function s (props: Omit<JSX.IntrinsicElements["s"], 'onClick'> & HTMXProps) {
   return <s {...resolveHTMXProps(props)}>{props.children}</s>
 }
 export const S = s
-export const samp = (props: JSX.IntrinsicElements["samp"] & HTMXProps) => {
+export function samp (props: Omit<JSX.IntrinsicElements["samp"], 'onClick'> & HTMXProps) {
   return <samp {...resolveHTMXProps(props)}>{props.children}</samp>
 }
 export const Samp = samp
-export const script = (props: JSX.IntrinsicElements["script"] & HTMXProps) => {
+export function script (props: Omit<JSX.IntrinsicElements["script"], 'onClick'> & HTMXProps) {
   return <script {...resolveHTMXProps(props)}>{props.children}</script>
 }
 export const Script = script
-export const section = (props: JSX.IntrinsicElements["section"] & HTMXProps) => {
+export function section (props: Omit<JSX.IntrinsicElements["section"], 'onClick'> & HTMXProps) {
   return <section {...resolveHTMXProps(props)}>{props.children}</section>
 }
 export const Section = section
-export const select = (props: JSX.IntrinsicElements["select"] & HTMXProps) => {
+export function select (props: Omit<JSX.IntrinsicElements["select"], 'onClick'> & HTMXProps) {
   return <select {...resolveHTMXProps(props)}>{props.children}</select>
 }
 export const Select = select
-export const slot = (props: JSX.IntrinsicElements["slot"] & HTMXProps) => {
+export function slot (props: Omit<JSX.IntrinsicElements["slot"], 'onClick'> & HTMXProps) {
   return <slot {...resolveHTMXProps(props)}>{props.children}</slot>
 }
 export const Slot = slot
-export const small = (props: JSX.IntrinsicElements["small"] & HTMXProps) => {
+export function small (props: Omit<JSX.IntrinsicElements["small"], 'onClick'> & HTMXProps) {
   return <small {...resolveHTMXProps(props)}>{props.children}</small>
 }
 export const Small = small
-export const source = (props: JSX.IntrinsicElements["source"] & HTMXProps) => {
+export function source (props: Omit<JSX.IntrinsicElements["source"], 'onClick'> & HTMXProps) {
   return <source {...resolveHTMXProps(props)}>{props.children}</source>
 }
 export const Source = source
-export const span = (props: JSX.IntrinsicElements["span"] & HTMXProps) => {
+export function span (props: Omit<JSX.IntrinsicElements["span"], 'onClick'> & HTMXProps) {
   return <span {...resolveHTMXProps(props)}>{props.children}</span>
 }
 export const Span = span
-export const strong = (props: JSX.IntrinsicElements["strong"] & HTMXProps) => {
+export function strong (props: Omit<JSX.IntrinsicElements["strong"], 'onClick'> & HTMXProps) {
   return <strong {...resolveHTMXProps(props)}>{props.children}</strong>
 }
 export const Strong = strong
-export const style = (props: JSX.IntrinsicElements["style"] & HTMXProps) => {
+export function style (props: Omit<JSX.IntrinsicElements["style"], 'onClick'> & HTMXProps) {
   return <style {...resolveHTMXProps(props)}>{props.children}</style>
 }
 export const Style = style
-export const sub = (props: JSX.IntrinsicElements["sub"] & HTMXProps) => {
+export function sub (props: Omit<JSX.IntrinsicElements["sub"], 'onClick'> & HTMXProps) {
   return <sub {...resolveHTMXProps(props)}>{props.children}</sub>
 }
 export const Sub = sub
-export const summary = (props: JSX.IntrinsicElements["summary"] & HTMXProps) => {
+export function summary (props: Omit<JSX.IntrinsicElements["summary"], 'onClick'> & HTMXProps) {
   return <summary {...resolveHTMXProps(props)}>{props.children}</summary>
 }
 export const Summary = summary
-export const sup = (props: JSX.IntrinsicElements["sup"] & HTMXProps) => {
+export function sup (props: Omit<JSX.IntrinsicElements["sup"], 'onClick'> & HTMXProps) {
   return <sup {...resolveHTMXProps(props)}>{props.children}</sup>
 }
 export const Sup = sup
-export const table = (props: JSX.IntrinsicElements["table"] & HTMXProps) => {
+export function table (props: Omit<JSX.IntrinsicElements["table"], 'onClick'> & HTMXProps) {
   return <table {...resolveHTMXProps(props)}>{props.children}</table>
 }
 export const Table = table
-export const tbody = (props: JSX.IntrinsicElements["tbody"] & HTMXProps) => {
+export function tbody (props: Omit<JSX.IntrinsicElements["tbody"], 'onClick'> & HTMXProps) {
   return <tbody {...resolveHTMXProps(props)}>{props.children}</tbody>
 }
 export const Tbody = tbody
-export const td = (props: JSX.IntrinsicElements["td"] & HTMXProps) => {
+export function td (props: Omit<JSX.IntrinsicElements["td"], 'onClick'> & HTMXProps) {
   return <td {...resolveHTMXProps(props)}>{props.children}</td>
 }
 export const Td = td
-export const textarea = (props: JSX.IntrinsicElements["textarea"] & HTMXProps) => {
+export function textarea (props: Omit<JSX.IntrinsicElements["textarea"], 'onClick'> & HTMXProps) {
   return <textarea {...resolveHTMXProps(props)}>{props.children}</textarea>
 }
 export const Textarea = textarea
-export const tfoot = (props: JSX.IntrinsicElements["tfoot"] & HTMXProps) => {
+export function tfoot (props: Omit<JSX.IntrinsicElements["tfoot"], 'onClick'> & HTMXProps) {
   return <tfoot {...resolveHTMXProps(props)}>{props.children}</tfoot>
 }
 export const Tfoot = tfoot
-export const th = (props: JSX.IntrinsicElements["th"] & HTMXProps) => {
+export function th (props: Omit<JSX.IntrinsicElements["th"], 'onClick'> & HTMXProps) {
   return <th {...resolveHTMXProps(props)}>{props.children}</th>
 }
 export const Th = th
-export const thead = (props: JSX.IntrinsicElements["thead"] & HTMXProps) => {
+export function thead (props: Omit<JSX.IntrinsicElements["thead"], 'onClick'> & HTMXProps) {
   return <thead {...resolveHTMXProps(props)}>{props.children}</thead>
 }
 export const Thead = thead
-export const time = (props: JSX.IntrinsicElements["time"] & HTMXProps) => {
+export function time (props: Omit<JSX.IntrinsicElements["time"], 'onClick'> & HTMXProps) {
   return <time {...resolveHTMXProps(props)}>{props.children}</time>
 }
 export const Time = time
-export const title = (props: JSX.IntrinsicElements["title"] & HTMXProps) => {
+export function title (props: Omit<JSX.IntrinsicElements["title"], 'onClick'> & HTMXProps) {
   return <title {...resolveHTMXProps(props)}>{props.children}</title>
 }
 export const Title = title
-export const tr = (props: JSX.IntrinsicElements["tr"] & HTMXProps) => {
+export function tr (props: Omit<JSX.IntrinsicElements["tr"], 'onClick'> & HTMXProps) {
   return <tr {...resolveHTMXProps(props)}>{props.children}</tr>
 }
 export const Tr = tr
-export const track = (props: JSX.IntrinsicElements["track"] & HTMXProps) => {
+export function track (props: Omit<JSX.IntrinsicElements["track"], 'onClick'> & HTMXProps) {
   return <track {...resolveHTMXProps(props)}>{props.children}</track>
 }
 export const Track = track
-export const u = (props: JSX.IntrinsicElements["u"] & HTMXProps) => {
+export function u (props: Omit<JSX.IntrinsicElements["u"], 'onClick'> & HTMXProps) {
   return <u {...resolveHTMXProps(props)}>{props.children}</u>
 }
 export const U = u
-export const ul = (props: JSX.IntrinsicElements["ul"] & HTMXProps) => {
+export function ul (props: Omit<JSX.IntrinsicElements["ul"], 'onClick'> & HTMXProps) {
   return <ul {...resolveHTMXProps(props)}>{props.children}</ul>
 }
 export const Ul = ul
-export const video = (props: JSX.IntrinsicElements["video"] & HTMXProps) => {
+export function video (props: Omit<JSX.IntrinsicElements["video"], 'onClick'> & HTMXProps) {
   return <video {...resolveHTMXProps(props)}>{props.children}</video>
 }
 export const Video = video
-export const wbr = (props: JSX.IntrinsicElements["wbr"] & HTMXProps) => {
+export function wbr (props: Omit<JSX.IntrinsicElements["wbr"], 'onClick'> & HTMXProps) {
   return <wbr {...resolveHTMXProps(props)}>{props.children}</wbr>
 }
 export const Wbr = wbr
-export const svg = (props: JSX.IntrinsicElements["svg"] & HTMXProps) => {
+export function svg (props: Omit<JSX.IntrinsicElements["svg"], 'onClick'> & HTMXProps) {
   return <svg {...resolveHTMXProps(props)}>{props.children}</svg>
 }
 export const Svg = svg
-export const animate = (props: JSX.IntrinsicElements["animate"] & HTMXProps) => {
+export function animate (props: Omit<JSX.IntrinsicElements["animate"], 'onClick'> & HTMXProps) {
   return <animate {...resolveHTMXProps(props)}>{props.children}</animate>
 }
 export const Animate = animate
-export const circle = (props: JSX.IntrinsicElements["circle"] & HTMXProps) => {
+export function circle (props: Omit<JSX.IntrinsicElements["circle"], 'onClick'> & HTMXProps) {
   return <circle {...resolveHTMXProps(props)}>{props.children}</circle>
 }
 export const Circle = circle
-export const animateTransform = (props: JSX.IntrinsicElements["animateTransform"] & HTMXProps) => {
+export function animateTransform (props: Omit<JSX.IntrinsicElements["animateTransform"], 'onClick'> & HTMXProps) {
   return <animateTransform {...resolveHTMXProps(props)}>{props.children}</animateTransform>
 }
 export const AnimateTransform = animateTransform
-export const clipPath = (props: JSX.IntrinsicElements["clipPath"] & HTMXProps) => {
+export function clipPath (props: Omit<JSX.IntrinsicElements["clipPath"], 'onClick'> & HTMXProps) {
   return <clipPath {...resolveHTMXProps(props)}>{props.children}</clipPath>
 }
 export const ClipPath = clipPath
-export const defs = (props: JSX.IntrinsicElements["defs"] & HTMXProps) => {
+export function defs (props: Omit<JSX.IntrinsicElements["defs"], 'onClick'> & HTMXProps) {
   return <defs {...resolveHTMXProps(props)}>{props.children}</defs>
 }
 export const Defs = defs
-export const desc = (props: JSX.IntrinsicElements["desc"] & HTMXProps) => {
+export function desc (props: Omit<JSX.IntrinsicElements["desc"], 'onClick'> & HTMXProps) {
   return <desc {...resolveHTMXProps(props)}>{props.children}</desc>
 }
 export const Desc = desc
-export const ellipse = (props: JSX.IntrinsicElements["ellipse"] & HTMXProps) => {
+export function ellipse (props: Omit<JSX.IntrinsicElements["ellipse"], 'onClick'> & HTMXProps) {
   return <ellipse {...resolveHTMXProps(props)}>{props.children}</ellipse>
 }
 export const Ellipse = ellipse
-export const feBlend = (props: JSX.IntrinsicElements["feBlend"] & HTMXProps) => {
+export function feBlend (props: Omit<JSX.IntrinsicElements["feBlend"], 'onClick'> & HTMXProps) {
   return <feBlend {...resolveHTMXProps(props)}>{props.children}</feBlend>
 }
 export const FeBlend = feBlend
-export const feColorMatrix = (props: JSX.IntrinsicElements["feColorMatrix"] & HTMXProps) => {
+export function feColorMatrix (props: Omit<JSX.IntrinsicElements["feColorMatrix"], 'onClick'> & HTMXProps) {
   return <feColorMatrix {...resolveHTMXProps(props)}>{props.children}</feColorMatrix>
 }
 export const FeColorMatrix = feColorMatrix
-export const feComponentTransfer = (props: JSX.IntrinsicElements["feComponentTransfer"] & HTMXProps) => {
+export function feComponentTransfer (props: Omit<JSX.IntrinsicElements["feComponentTransfer"], 'onClick'> & HTMXProps) {
   return <feComponentTransfer {...resolveHTMXProps(props)}>{props.children}</feComponentTransfer>
 }
 export const FeComponentTransfer = feComponentTransfer
-export const feComposite = (props: JSX.IntrinsicElements["feComposite"] & HTMXProps) => {
+export function feComposite (props: Omit<JSX.IntrinsicElements["feComposite"], 'onClick'> & HTMXProps) {
   return <feComposite {...resolveHTMXProps(props)}>{props.children}</feComposite>
 }
 export const FeComposite = feComposite
-export const feConvolveMatrix = (props: JSX.IntrinsicElements["feConvolveMatrix"] & HTMXProps) => {
+export function feConvolveMatrix (props: Omit<JSX.IntrinsicElements["feConvolveMatrix"], 'onClick'> & HTMXProps) {
   return <feConvolveMatrix {...resolveHTMXProps(props)}>{props.children}</feConvolveMatrix>
 }
 export const FeConvolveMatrix = feConvolveMatrix
-export const feDiffuseLighting = (props: JSX.IntrinsicElements["feDiffuseLighting"] & HTMXProps) => {
+export function feDiffuseLighting (props: Omit<JSX.IntrinsicElements["feDiffuseLighting"], 'onClick'> & HTMXProps) {
   return <feDiffuseLighting {...resolveHTMXProps(props)}>{props.children}</feDiffuseLighting>
 }
 export const FeDiffuseLighting = feDiffuseLighting
-export const feDisplacementMap = (props: JSX.IntrinsicElements["feDisplacementMap"] & HTMXProps) => {
+export function feDisplacementMap (props: Omit<JSX.IntrinsicElements["feDisplacementMap"], 'onClick'> & HTMXProps) {
   return <feDisplacementMap {...resolveHTMXProps(props)}>{props.children}</feDisplacementMap>
 }
 export const FeDisplacementMap = feDisplacementMap
-export const feDropShadow = (props: JSX.IntrinsicElements["feDropShadow"] & HTMXProps) => {
+export function feDropShadow (props: Omit<JSX.IntrinsicElements["feDropShadow"], 'onClick'> & HTMXProps) {
   return <feDropShadow {...resolveHTMXProps(props)}>{props.children}</feDropShadow>
 }
 export const FeDropShadow = feDropShadow
-export const feFlood = (props: JSX.IntrinsicElements["feFlood"] & HTMXProps) => {
+export function feFlood (props: Omit<JSX.IntrinsicElements["feFlood"], 'onClick'> & HTMXProps) {
   return <feFlood {...resolveHTMXProps(props)}>{props.children}</feFlood>
 }
 export const FeFlood = feFlood
-export const feFuncA = (props: JSX.IntrinsicElements["feFuncA"] & HTMXProps) => {
+export function feFuncA (props: Omit<JSX.IntrinsicElements["feFuncA"], 'onClick'> & HTMXProps) {
   return <feFuncA {...resolveHTMXProps(props)}>{props.children}</feFuncA>
 }
 export const FeFuncA = feFuncA
-export const feFuncB = (props: JSX.IntrinsicElements["feFuncB"] & HTMXProps) => {
+export function feFuncB (props: Omit<JSX.IntrinsicElements["feFuncB"], 'onClick'> & HTMXProps) {
   return <feFuncB {...resolveHTMXProps(props)}>{props.children}</feFuncB>
 }
 export const FeFuncB = feFuncB
-export const feFuncG = (props: JSX.IntrinsicElements["feFuncG"] & HTMXProps) => {
+export function feFuncG (props: Omit<JSX.IntrinsicElements["feFuncG"], 'onClick'> & HTMXProps) {
   return <feFuncG {...resolveHTMXProps(props)}>{props.children}</feFuncG>
 }
 export const FeFuncG = feFuncG
-export const feFuncR = (props: JSX.IntrinsicElements["feFuncR"] & HTMXProps) => {
+export function feFuncR (props: Omit<JSX.IntrinsicElements["feFuncR"], 'onClick'> & HTMXProps) {
   return <feFuncR {...resolveHTMXProps(props)}>{props.children}</feFuncR>
 }
 export const FeFuncR = feFuncR
-export const feGaussianBlur = (props: JSX.IntrinsicElements["feGaussianBlur"] & HTMXProps) => {
+export function feGaussianBlur (props: Omit<JSX.IntrinsicElements["feGaussianBlur"], 'onClick'> & HTMXProps) {
   return <feGaussianBlur {...resolveHTMXProps(props)}>{props.children}</feGaussianBlur>
 }
 export const FeGaussianBlur = feGaussianBlur
-export const feImage = (props: JSX.IntrinsicElements["feImage"] & HTMXProps) => {
+export function feImage (props: Omit<JSX.IntrinsicElements["feImage"], 'onClick'> & HTMXProps) {
   return <feImage {...resolveHTMXProps(props)}>{props.children}</feImage>
 }
 export const FeImage = feImage
-export const feMerge = (props: JSX.IntrinsicElements["feMerge"] & HTMXProps) => {
+export function feMerge (props: Omit<JSX.IntrinsicElements["feMerge"], 'onClick'> & HTMXProps) {
   return <feMerge {...resolveHTMXProps(props)}>{props.children}</feMerge>
 }
 export const FeMerge = feMerge
-export const feMergeNode = (props: JSX.IntrinsicElements["feMergeNode"] & HTMXProps) => {
+export function feMergeNode (props: Omit<JSX.IntrinsicElements["feMergeNode"], 'onClick'> & HTMXProps) {
   return <feMergeNode {...resolveHTMXProps(props)}>{props.children}</feMergeNode>
 }
 export const FeMergeNode = feMergeNode
-export const feMorphology = (props: JSX.IntrinsicElements["feMorphology"] & HTMXProps) => {
+export function feMorphology (props: Omit<JSX.IntrinsicElements["feMorphology"], 'onClick'> & HTMXProps) {
   return <feMorphology {...resolveHTMXProps(props)}>{props.children}</feMorphology>
 }
 export const FeMorphology = feMorphology
-export const feOffset = (props: JSX.IntrinsicElements["feOffset"] & HTMXProps) => {
+export function feOffset (props: Omit<JSX.IntrinsicElements["feOffset"], 'onClick'> & HTMXProps) {
   return <feOffset {...resolveHTMXProps(props)}>{props.children}</feOffset>
 }
 export const FeOffset = feOffset
-export const feSpecularLighting = (props: JSX.IntrinsicElements["feSpecularLighting"] & HTMXProps) => {
+export function feSpecularLighting (props: Omit<JSX.IntrinsicElements["feSpecularLighting"], 'onClick'> & HTMXProps) {
   return <feSpecularLighting {...resolveHTMXProps(props)}>{props.children}</feSpecularLighting>
 }
 export const FeSpecularLighting = feSpecularLighting
-export const feTile = (props: JSX.IntrinsicElements["feTile"] & HTMXProps) => {
+export function feTile (props: Omit<JSX.IntrinsicElements["feTile"], 'onClick'> & HTMXProps) {
   return <feTile {...resolveHTMXProps(props)}>{props.children}</feTile>
 }
 export const FeTile = feTile
-export const feTurbulence = (props: JSX.IntrinsicElements["feTurbulence"] & HTMXProps) => {
+export function feTurbulence (props: Omit<JSX.IntrinsicElements["feTurbulence"], 'onClick'> & HTMXProps) {
   return <feTurbulence {...resolveHTMXProps(props)}>{props.children}</feTurbulence>
 }
 export const FeTurbulence = feTurbulence
-export const filter = (props: JSX.IntrinsicElements["filter"] & HTMXProps) => {
+export function filter (props: Omit<JSX.IntrinsicElements["filter"], 'onClick'> & HTMXProps) {
   return <filter {...resolveHTMXProps(props)}>{props.children}</filter>
 }
 export const Filter = filter
-export const foreignObject = (props: JSX.IntrinsicElements["foreignObject"] & HTMXProps) => {
+export function foreignObject (props: Omit<JSX.IntrinsicElements["foreignObject"], 'onClick'> & HTMXProps) {
   return <foreignObject {...resolveHTMXProps(props)}>{props.children}</foreignObject>
 }
 export const ForeignObject = foreignObject
-export const g = (props: JSX.IntrinsicElements["g"] & HTMXProps) => {
+export function g (props: Omit<JSX.IntrinsicElements["g"], 'onClick'> & HTMXProps) {
   return <g {...resolveHTMXProps(props)}>{props.children}</g>
 }
 export const G = g
-export const image = (props: JSX.IntrinsicElements["image"] & HTMXProps) => {
+export function image (props: Omit<JSX.IntrinsicElements["image"], 'onClick'> & HTMXProps) {
   return <image {...resolveHTMXProps(props)}>{props.children}</image>
 }
 export const Image = image
-export const line = (props: JSX.IntrinsicElements["line"] & HTMXProps) => {
+export function line (props: Omit<JSX.IntrinsicElements["line"], 'onClick'> & HTMXProps) {
   return <line {...resolveHTMXProps(props)}>{props.children}</line>
 }
 export const Line = line
-export const linearGradient = (props: JSX.IntrinsicElements["linearGradient"] & HTMXProps) => {
+export function linearGradient (props: Omit<JSX.IntrinsicElements["linearGradient"], 'onClick'> & HTMXProps) {
   return <linearGradient {...resolveHTMXProps(props)}>{props.children}</linearGradient>
 }
 export const LinearGradient = linearGradient
-export const marker = (props: JSX.IntrinsicElements["marker"] & HTMXProps) => {
+export function marker (props: Omit<JSX.IntrinsicElements["marker"], 'onClick'> & HTMXProps) {
   return <marker {...resolveHTMXProps(props)}>{props.children}</marker>
 }
 export const Marker = marker
-export const mask = (props: JSX.IntrinsicElements["mask"] & HTMXProps) => {
+export function mask (props: Omit<JSX.IntrinsicElements["mask"], 'onClick'> & HTMXProps) {
   return <mask {...resolveHTMXProps(props)}>{props.children}</mask>
 }
 export const Mask = mask
-export const path = (props: JSX.IntrinsicElements["path"] & HTMXProps) => {
+export function path (props: Omit<JSX.IntrinsicElements["path"], 'onClick'> & HTMXProps) {
   return <path {...resolveHTMXProps(props)}>{props.children}</path>
 }
 export const Path = path
-export const pattern = (props: JSX.IntrinsicElements["pattern"] & HTMXProps) => {
+export function pattern (props: Omit<JSX.IntrinsicElements["pattern"], 'onClick'> & HTMXProps) {
   return <pattern {...resolveHTMXProps(props)}>{props.children}</pattern>
 }
 export const Pattern = pattern
-export const polygon = (props: JSX.IntrinsicElements["polygon"] & HTMXProps) => {
+export function polygon (props: Omit<JSX.IntrinsicElements["polygon"], 'onClick'> & HTMXProps) {
   return <polygon {...resolveHTMXProps(props)}>{props.children}</polygon>
 }
 export const Polygon = polygon
-export const polyline = (props: JSX.IntrinsicElements["polyline"] & HTMXProps) => {
+export function polyline (props: Omit<JSX.IntrinsicElements["polyline"], 'onClick'> & HTMXProps) {
   return <polyline {...resolveHTMXProps(props)}>{props.children}</polyline>
 }
 export const Polyline = polyline
-export const radialGradient = (props: JSX.IntrinsicElements["radialGradient"] & HTMXProps) => {
+export function radialGradient (props: Omit<JSX.IntrinsicElements["radialGradient"], 'onClick'> & HTMXProps) {
   return <radialGradient {...resolveHTMXProps(props)}>{props.children}</radialGradient>
 }
 export const RadialGradient = radialGradient
-export const rect = (props: JSX.IntrinsicElements["rect"] & HTMXProps) => {
+export function rect (props: Omit<JSX.IntrinsicElements["rect"], 'onClick'> & HTMXProps) {
   return <rect {...resolveHTMXProps(props)}>{props.children}</rect>
 }
 export const Rect = rect
-export const stop = (props: JSX.IntrinsicElements["stop"] & HTMXProps) => {
+export function stop (props: Omit<JSX.IntrinsicElements["stop"], 'onClick'> & HTMXProps) {
   return <stop {...resolveHTMXProps(props)}>{props.children}</stop>
 }
 export const Stop = stop
-export const symbol = (props: JSX.IntrinsicElements["symbol"] & HTMXProps) => {
+export function symbol (props: Omit<JSX.IntrinsicElements["symbol"], 'onClick'> & HTMXProps) {
   return <symbol {...resolveHTMXProps(props)}>{props.children}</symbol>
 }
 export const Symbol = symbol
-export const text = (props: JSX.IntrinsicElements["text"] & HTMXProps) => {
+export function text (props: Omit<JSX.IntrinsicElements["text"], 'onClick'> & HTMXProps) {
   return <text {...resolveHTMXProps(props)}>{props.children}</text>
 }
 export const Text = text
-export const textPath = (props: JSX.IntrinsicElements["textPath"] & HTMXProps) => {
+export function textPath (props: Omit<JSX.IntrinsicElements["textPath"], 'onClick'> & HTMXProps) {
   return <textPath {...resolveHTMXProps(props)}>{props.children}</textPath>
 }
 export const TextPath = textPath
-export const tspan = (props: JSX.IntrinsicElements["tspan"] & HTMXProps) => {
+export function tspan (props: Omit<JSX.IntrinsicElements["tspan"], 'onClick'> & HTMXProps) {
   return <tspan {...resolveHTMXProps(props)}>{props.children}</tspan>
 }
 export const Tspan = tspan
-export const use = (props: JSX.IntrinsicElements["use"] & HTMXProps) => {
+export function use (props: Omit<JSX.IntrinsicElements["use"], 'onClick'> & HTMXProps) {
   return <use {...resolveHTMXProps(props)}>{props.children}</use>
 }
 export const Use = use

@@ -1,5 +1,6 @@
 {
   "tasks": {
+    "build-htmx": "deno run --allow-read --allow-write ./htmx/htmx_build.ts",
     "test": "deno test --config ./tsconfig.json",
     "start": "deno task all-examples",
     "all-examples": "export NO_SERVE=true && deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/examples.tsx",
