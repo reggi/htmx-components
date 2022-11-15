@@ -81,14 +81,11 @@ async function getDenoCompilerOptions() {
 	return null
 }
 
-
-
-
 let esbuildInitialized: boolean | Promise<void> = false;
 export async function ensureEsbuildInitialized() {
   if (esbuildInitialized === false) {
     if (Deno.run === undefined) {
-      const wasmURL = new URL("../esbuild/esbuild_v0.14.51.wasm", import.meta.url).href;
+      const wasmURL = new URL("./esbuild_v0.15.10.wasm", import.meta.url).href;
       esbuildInitialized = fetch(wasmURL).then(async (r) => {
         const resp = new Response(r.body, {
           headers: { "Content-Type": "application/wasm" },
