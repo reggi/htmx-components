@@ -36,7 +36,9 @@ const resolveHere = (v: string) => {
 async function denoDeployCompatImport <T> (g: string, maintainTypes: () => Promise<T>): Promise<T> {
   if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
     const v = resolveHere(g)
+    console.log(v)
     const file = await Deno.readTextFile(v)
+    console.log(file)
     return import(genImport(file).href)
   }
   return maintainTypes()
