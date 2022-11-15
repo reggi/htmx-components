@@ -33,6 +33,9 @@ const resolveHere = (v: string) => {
   return path.resolve(path.dirname(import.meta.url.replace('file://', '')), v)
 }
 
+const file = await import('../import_library.ts')
+console.log(file)
+
 const { library } = await import('../import_library.ts').catch(() => ({ library: undefined }))
 
 export type RawLibraryType = typeof library
