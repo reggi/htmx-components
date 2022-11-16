@@ -10,7 +10,7 @@ import { Bundler } from "../esbuild/bundle.ts";
 import { ClientCode, defineClientCode, isClientCode } from "./client_code.tsx";
 import { LibraryKeys } from "./custom_import.ts";
 import { clientImport, ClientImport, LibraryImport } from "./client_import.ts";
-import { BundleFile } from "./bundle_file.ts";
+import { BundleFile, ResponseRoute } from "./bundle_file.ts";
 
 export type ComponentWithMethods<C extends GenericProps> = GC<C> & ComponentMethods<C>
 
@@ -36,7 +36,7 @@ class SimpleRoute {
   ) {}
 }
 
-type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent | ClientCode | BundleFile)[]
+type Routes = (ComponentMethods<any> | SimpleRoute | WebComponent | ClientCode | BundleFile | ResponseRoute)[]
 
 interface Options {
   name: string,
@@ -58,6 +58,7 @@ export class HTMXComponents {
     this.registryPage = this.registryPage.bind(this)
     this.webComponent = this.webComponent.bind(this)
     this.clientImport = this.clientImport.bind(this)
+    this.handler = this.handler.bind(this)
     this.routes = [...this.routes, ...this.webComponents]
   }
 
@@ -111,6 +112,11 @@ export class HTMXComponents {
         if (!b) return fourOhFour
         const data = await b.get(route.externalId)
         return new Response(data, { headers: { "Content-Type": 'text/javascript' }, status: 200 });
+      }
+
+      if (route instanceof ResponseRoute) {
+        if (!b) return fourOhFour
+        return route.handler(request)
       }
 
       if (route instanceof BundleFile) {
@@ -182,6 +188,12 @@ export class HTMXComponents {
     return webComponent;
   }
 
+  endpoint (...args: ConstructorParameters<typeof ResponseRoute>) {
+    const route = new ResponseRoute(...args)
+    this.routes.push(route)
+    return route.handler;
+  }
+
   async clientImport <K extends LibraryKeys>(filePath: K): Promise<ClientImport<LibraryImport<K>>['exports']> {
     const data = await clientImport(filePath)
     const bf = new BundleFile(data.path)
@@ -200,6 +212,7 @@ export class HTMXComponents {
       if (isClientCode(route)) return route
       if (route instanceof BundleFile) return route
       if (route instanceof SimpleRoute) return route
+      if (route instanceof ResponseRoute) return route
       return route.clone(context)
     })
   }

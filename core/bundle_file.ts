@@ -6,6 +6,18 @@ export abstract class RouteFile {
   abstract urlPattern: URLPattern
 }
 
+export class ResponseRoute extends RouteFile {
+  TYPE = "response";
+  urlPattern: URLPattern;
+  constructor(
+    pathname: string,
+    public handler: (req: Request) => Response
+  ) {
+    super();
+    this.urlPattern = new URLPattern({ pathname })
+  }
+}
+
 export class BundleFile extends RouteFile {
   TYPE = 'bundle_file'
   entry: { id: string, url: string }
