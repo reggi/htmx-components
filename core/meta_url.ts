@@ -1,3 +1,4 @@
+import * as nodePath from 'https://deno.land/std@0.150.0/path/mod.ts';
 
 export const metaUrl = () => {
   const error = new Error()
@@ -9,4 +10,9 @@ export const metaUrl = () => {
   line = line.replace(/\:[0-9]+\:[0-9]+/, '')
   line = line.trim()
   return line
+}
+
+export const metaDir = () => {
+  const core = metaUrl()
+  return nodePath.dirname(core.replace('file://', ''))
 }

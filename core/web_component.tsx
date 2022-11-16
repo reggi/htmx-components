@@ -1,8 +1,9 @@
 // deno-lint-ignore-file no-explicit-any
 
-import { parse } from 'https://deno.land/std@0.150.0/path/mod.ts';
+import * as nodePath from 'https://deno.land/std@0.150.0/path/mod.ts';
 import { VNode, createElement } from 'preact'
 import { getEntryId } from '../esbuild/bundle.ts';
+import { metaDir } from './meta_url.ts';
 
 export class WebComponentHarness {
   TYPE = "WEB_COMPONENT" as const;
@@ -17,7 +18,7 @@ export class WebComponentHarness {
     public path: string,
     public _tag?: string
   ) {
-    this.tag = _tag ? _tag : parse(path).name.toLocaleLowerCase().replace(/[^a-z]/gi, '-');
+    this.tag = _tag ? _tag : nodePath.parse(path).name.toLocaleLowerCase().replace(/[^a-z]/gi, '-');
     this.entry = { id: this.tag, url: path }
     this.entryId = getEntryId(this.entry);
     this.externalId = `/${this.entryId}.js`
@@ -35,8 +36,10 @@ export function defineWebComponent <P extends Record<string, unknown>>(opts: str
   tag?: string,
   path: string
 }) {
-  const path = typeof opts == 'string' ? opts : opts.path
+  let path = typeof opts == 'string' ? opts : opts.path
   const tag = typeof opts == 'string' ? undefined : opts.tag
+  if (!nodePath.isAbsolute(path.replace('file://', ''))) path = nodePath.resolve(metaDir(), path)
+
   const instance = new WebComponentHarness(path, tag)
   function Component (props: P) {
     return createElement(instance.tag, props)
