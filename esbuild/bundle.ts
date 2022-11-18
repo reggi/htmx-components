@@ -1,4 +1,5 @@
-import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.51/mod.js";
+// import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.51/mod.js";
+// import { BundleFile } from "../core/bundle_file.ts";
 export const BUILD_ID = Deno.env.get("DENO_DEPLOYMENT_ID") || crypto.randomUUID();
 import { denoPlugin, esbuild, toFileUrl } from "./bundle_deps.ts";
 
@@ -70,16 +71,17 @@ export class Bundler {
     await ensureEsbuildInitialized();
     // In dev-mode we skip identifier minification to be able to show proper
     // component names in Preact DevTools instead of single characters.
-    const minifyOptions: Partial<BuildOptions> = this.#dev
-      ? { minifyIdentifiers: false, minifySyntax: true, minifyWhitespace: true }
-      : { minify: true };
+    // const minifyOptions: Partial<BuildOptions> = this.#dev
+    //   ? { minifyIdentifiers: false, minifySyntax: true, minifyWhitespace: true }
+    //   : { minify: true };
     const bundle = await esbuild.build({
       bundle: true,
       define: { __FRSH_BUILD_ID: `"${BUILD_ID}"` },
       entryPoints,
       format: "esm",
       metafile: true,
-      ...minifyOptions,
+      // ...minifyOptions,
+      ...{minifySyntax: true, minifyWhitespace: true},
       outdir: ".",
       // This is requried to ensure the format of the outputFiles path is the same
       // between windows and linux
@@ -88,7 +90,7 @@ export class Bundler {
       platform: "neutral",
       plugins: [denoPlugin({ importMapURL: this.#importMapURL })],
       sourcemap: this.#dev ? "linked" : false,
-      splitting: true,
+      splitting: false,
       target: ["chrome99", "firefox99", "safari15"],
       treeShaking: true,
       write: false,

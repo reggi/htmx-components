@@ -75,7 +75,9 @@ async function getDenoCompilerOptions() {
 					) as DenoConfigurationFile
 				).compilerOptions ?? null
 			)
-		} catch {}
+		} catch (_e) {
+      return {}
+    }
 	}
 
 	return null

@@ -6,6 +6,7 @@ import { routes as clickToLoad, ClickToLoad } from './3.click-to-load.tsx';
 import { routes as deleteRow, DeleteRowExample } from './4.delete-row.tsx';
 import { routes as clientImport, OnClick } from './98.client-code.tsx';
 import { routes as webComponent, WebComponentExample } from './99.web-component.tsx';
+import { routes as editRowRoutes, Table } from './5.edit-row.tsx'
 
 const { component, routes } = new HTMXComponents('@reggi/examples')
 
@@ -38,6 +39,11 @@ const Home = component('/', async () => (
     <ul>
       <li><OnClick.anchor.href boost>Qwik-style on click js loading</OnClick.anchor.href></li>
     </ul>
+    <h1>Edit Row</h1>
+    <ul>
+      <li><Table.anchor.href boost>"Edit Row", example with client side javascript</Table.anchor.href></li>
+    </ul>
+    
   </Fragment>
 ))
 
@@ -49,4 +55,5 @@ await serve([
   ...deleteRow,
   ...webComponent,
   ...clientImport,
+  ...editRowRoutes
 ])

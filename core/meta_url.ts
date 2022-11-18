@@ -16,3 +16,15 @@ export const metaDir = () => {
   const core = metaUrl()
   return nodePath.dirname(core.replace('file://', ''))
 }
+
+export const removeFilePrefix = (url: string) => url.replace('file://', '')
+
+export const fileName = (path: string) => {
+  return nodePath.basename(path, nodePath.extname(path))
+}
+
+export const metaRelative = (requestingImport: string) => {
+  const callee = removeFilePrefix(metaUrl())
+  const calleeParent = nodePath.dirname(callee)
+  return nodePath.resolve(calleeParent, requestingImport)
+}

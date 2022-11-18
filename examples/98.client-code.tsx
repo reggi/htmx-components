@@ -8,8 +8,9 @@ const multi = await clientImport('./client_code/multi.ts')
 export const OnClick = component('/client-code-on-click', () => {
   return (
     <Fragment>
-      <HTMX.div onClick={multi.alice('hello')}>Do something</HTMX.div>
-      <HTMX.div onClick={multi.bob('welcome')}>Do something else</HTMX.div>
+      <p>This demo will fire an `import()` of a client-side js file, and execute a exported function on click.</p>
+      <HTMX.button onClick={multi.alice('hello')}>Alice Says "hello"</HTMX.button><br/><br/>
+      <HTMX.button onClick={multi.bob('welcome')}>Bob Says "welcome"</HTMX.button>
     </Fragment>
   )
 })

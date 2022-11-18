@@ -1,6 +1,17 @@
 {
   "version": "2",
   "remote": {
+    "https://deno.land/std@0.110.0/_util/assert.ts": "2f868145a042a11d5ad0a3c748dcf580add8a0dbc0e876eaa0026303a5488f58",
+    "https://deno.land/std@0.110.0/_util/os.ts": "dfb186cc4e968c770ab6cc3288bd65f4871be03b93beecae57d657232ecffcac",
+    "https://deno.land/std@0.110.0/path/_constants.ts": "1247fee4a79b70c89f23499691ef169b41b6ccf01887a0abd131009c5581b853",
+    "https://deno.land/std@0.110.0/path/_interface.ts": "1fa73b02aaa24867e481a48492b44f2598cd9dfa513c7b34001437007d3642e4",
+    "https://deno.land/std@0.110.0/path/_util.ts": "2e06a3b9e79beaf62687196bd4b60a4c391d862cfa007a20fc3a39f778ba073b",
+    "https://deno.land/std@0.110.0/path/common.ts": "f41a38a0719a1e85aa11c6ba3bea5e37c15dd009d705bd8873f94c833568cbc4",
+    "https://deno.land/std@0.110.0/path/glob.ts": "46708a3249cb5dc4a116cae3055114d6339bd5f0c1f412db6a4e0cb44c828a7d",
+    "https://deno.land/std@0.110.0/path/mod.ts": "4465dc494f271b02569edbb4a18d727063b5dbd6ed84283ff906260970a15d12",
+    "https://deno.land/std@0.110.0/path/posix.ts": "34349174b9cd121625a2810837a82dd8b986bbaaad5ade690d1de75bbb4555b2",
+    "https://deno.land/std@0.110.0/path/separator.ts": "8fdcf289b1b76fd726a508f57d3370ca029ae6976fcde5044007f062e643ff1c",
+    "https://deno.land/std@0.110.0/path/win32.ts": "2edb2f71f10578ee1168de01a8cbd3c65483e45a46bc2fa3156a0c6bfbd2720d",
     "https://deno.land/std@0.150.0/_util/assert.ts": "e94f2eb37cebd7f199952e242c77654e43333c1ac4c5c700e929ea3aa5489f74",
     "https://deno.land/std@0.150.0/_util/os.ts": "3b4c6e27febd119d36a416d7a97bd3b0251b77c88942c8f16ee5953ea13e2e49",
     "https://deno.land/std@0.150.0/path/_constants.ts": "df1db3ffa6dd6d1252cc9617e5d72165cd2483df90e93833e13580687b6083c3",
@@ -101,6 +112,7 @@
     "https://esm.sh/stable/preact@10.11.2/deno/jsx-runtime.js": "e04822710db4725f5ed01cf21f8ef713fbf10f6bc472415b8fec3801bba3133e",
     "https://esm.sh/stable/preact@10.11.2/deno/preact.js": "10e7be6ea2698598105f404198789d8a34fd6a1ca020482f94eaaaca736badf5",
     "https://esm.sh/strip-shebang@2.0.0?bundle?dev?sourcemap?pin=v96": "b7970035c1e425066a1eb2262056fc79988a3bde77667f26adb8315b4bcd2025",
+    "https://esm.sh/sweetalert2@11.6.8": "636758b2a60a937008581c8a981da87e0ccbb33accd6617874aa1c4a460f79d4",
     "https://esm.sh/v96/preact@10.11.2/jsx-runtime/src/index.d.ts": "e153460ed2b3fe2ad8b93696ecd48fbf73cd628b0b0ea6692b71804a3af69dfd",
     "https://esm.sh/v96/preact@10.11.2/src/index.d.ts": "76842a9d103548261ee001f2aee5fa5cacc8b1b4b4032af537ed84603c8f4a31",
     "https://esm.sh/v96/preact@10.11.2/src/jsx.d.ts": "77ce5bd7324455c9f6dc85bfc3c94b733acb92cc98fdf82e4b1059c8bca7866d",
@@ -119,6 +131,9 @@
     "https://esm.sh/v98/preact@10.11.2/src/jsx.d.ts": "77ce5bd7324455c9f6dc85bfc3c94b733acb92cc98fdf82e4b1059c8bca7866d",
     "https://esm.sh/v98/shebang-regex@4.0.0/deno/shebang-regex.js": "53682e4371246186b1d6c44e745e34ac78253b4d3959aaed3358145537d63bcb",
     "https://esm.sh/v98/stackframe@1.3.4/deno/stackframe.js": "b72bb4f3eacb8957631a38219d28df374d5319689ac793bbdf6a09c2aaf9ba6d",
-    "https://esm.sh/v98/strip-shebang@2.0.0/deno/strip-shebang.js": "83552307cc07110492996d15f5214fc61f16be4c0236a13863ea8095f298f42e"
+    "https://esm.sh/v98/strip-shebang@2.0.0/deno/strip-shebang.js": "83552307cc07110492996d15f5214fc61f16be4c0236a13863ea8095f298f42e",
+    "https://esm.sh/v98/sweetalert2@11.6.8/deno/sweetalert2.js": "fbabe350d0e3dfe88545cdf2fa6e6d7be1c72603866cc738fe1c02735ef9428f",
+    "https://esm.sh/v98/sweetalert2@11.6.8/sweetalert2.d.ts": "e068098034e042c439eeaca9a2ad13fa97eb119d82867ae9a5c353a9f3aed531",
+    "https://unpkg.com/htmx.org@1.8.4/dist/ext/disable-element.js": "24ced8090698b58ac5eb1d62e9698bf7fb9a811325549d0480a0fdcf49556d6f"
   }
 }

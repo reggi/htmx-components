@@ -2,5 +2,9 @@
   "./client_code/multi.ts": {
     "path": "examples/client_code/multi.ts",
     "asUsed": "./client_code/multi.ts"
+  },
+  "./client_code/edit_one.ts": {
+    "path": "examples/client_code/edit_one.ts",
+    "asUsed": "./client_code/edit_one.ts"
   }
 }

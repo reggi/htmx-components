@@ -7,10 +7,20 @@ import { PropsToUrl } from './method_convience.tsx';
 import { ComponentChild, ComponentChildren, JSX } from 'preact'
 import { defineWebComponent, isWebComponent, WebComponent } from "./web_component.tsx";
 import { Bundler } from "../esbuild/bundle.ts";
-import { ClientCode, defineClientCode, isClientCode } from "./client_code.tsx";
+import { ClientCode, isClientCode } from "./client_code.tsx";
 import { LibraryKeys } from "./custom_import.ts";
-import { clientImport, ClientImport, LibraryImport } from "./client_import.ts";
+import { clientImport, bundleImport, ClientImport, LibraryImport, BundleImport } from "./client_import.ts";
 import { BundleFile } from "./bundle_file.ts";
+import { metaRelative } from "./meta_url.ts";
+
+const Include = (b: BundleFile) => `
+import * as ${b.fileName} from "${b.bundleId}"
+window.${b.fileName} = ${b.fileName}
+`
+
+const ScriptTag = (bundle:BundleFile) => <script src={bundle.bundleId}></script>
+const ScriptModuleTag = (bundle:BundleFile) => <script type="module" src={bundle.bundleId}></script>
+const ScriptModuleTagInclude = (bundle:BundleFile) => <script type="module" dangerouslySetInnerHTML={{ __html: Include(bundle)}}></script>
 
 export type ComponentWithMethods<C extends GenericProps> = GC<C> & ComponentMethods<C>
 
@@ -58,6 +68,7 @@ export class HTMXComponents {
     this.registryPage = this.registryPage.bind(this)
     this.webComponent = this.webComponent.bind(this)
     this.clientImport = this.clientImport.bind(this)
+    this.bundleImport = this.bundleImport.bind(this)
     this.routes = [...this.routes, ...this.webComponents]
   }
 
@@ -82,24 +93,39 @@ export class HTMXComponents {
   }
 
   clientImportRoutes (routes: Routes): BundleFile[] {
-    return routes.filter(v => (v instanceof BundleFile)) as any
+    return routes.filter(v => (v instanceof BundleFile && v.include === false)) as any
   }
 
-  
+  scripts (routes: Routes): BundleFile[] {
+    return routes.filter(v => (v instanceof BundleFile) && (v.include === 'script')) as any
+  }
+
+  scriptModules (routes: Routes): BundleFile[] {
+    return routes.filter(v => (v instanceof BundleFile) && (v.include === 'module')) as any
+  }
+
+  scriptGlobals (routes: Routes): BundleFile[] {
+    return routes.filter(v => (v instanceof BundleFile) && (v.include === 'global')) as any
+  }
+
   async serve (routes: Routes = []) {
     let b: Bundler | undefined = undefined
 
     const allRoutes = [...this.routes, ...routes]
     const webComponents = this.webComponentsFromRoutes(allRoutes)
     const clientCode = this.clientImportRoutes(allRoutes)
+    const scripts = this.scripts(allRoutes)
+    const scriptModules = this.scriptModules(allRoutes)
+    const scriptGlobals = this.scriptGlobals(allRoutes)
 
-    if (webComponents.length || clientCode.length) {
-      const files = [...webComponents.map(v => v.entry), ...clientCode.map(v => v.entry)]
+    if (webComponents.length || scripts.length || scriptModules.length || scriptGlobals.length || clientCode.length) {
+      const files = [...webComponents, ...clientCode, ...scripts, ...scriptModules, ...scriptGlobals].map(v => v.entry)
       b = new Bundler(files)
       await b.bundle()
     }
 
     return denoServe(async (request: Request) => {
+
       const fourOhFour = new Response('error', { headers: { "Content-Type": 'text/html' }, status: 404 });
       const route = allRoutes.find(route => route.urlPattern.exec(request.url))
 
@@ -130,9 +156,12 @@ export class HTMXComponents {
         const params = results?.pathname.groups
         const Comp = route.Wrap as any
         const webComponentScripts = webComponents.map(c => c.script)
-        // const clientCodeScripts = clientCode.map(c => c.script)
-        const clientCodeScripts: any = []
-        const wrapped = route instanceof ComponentMethodsRaw ? <Comp {...params}/> : <Layout head={[...webComponentScripts, ...clientCodeScripts]}><Comp {...params}/></Layout>
+        const scriptTags = scripts.map(script => ScriptTag(script))
+        const scriptModuleTags = scriptModules.map(script => ScriptModuleTag(script))
+        const scriptGlobalModules = scriptGlobals.map(script => ScriptModuleTag(script))
+        const scriptGlobalInclude = scriptGlobals.map(script => ScriptModuleTagInclude(script))
+        const head: any = [...webComponentScripts, ...scriptTags, ...scriptModuleTags, ...scriptGlobalModules, ...scriptGlobalInclude]
+        const wrapped = route instanceof ComponentMethodsRaw ? <Comp {...params}/> : <Layout head={head}><Comp {...params}/></Layout>
         const html = await render(wrapped, { request, ...route.context })
         return new Response(html, { headers: { "Content-Type": 'text/html' }, status: 200 });
       }
@@ -184,7 +213,15 @@ export class HTMXComponents {
 
   async clientImport <K extends LibraryKeys>(filePath: K): Promise<ClientImport<LibraryImport<K>>['exports']> {
     const data = await clientImport(filePath)
-    const bf = new BundleFile(data.path)
+    const bf = new BundleFile(data.path, false)
+    this.routes.push(bf)
+    return data.exports
+  }
+
+  async bundleImport <K extends LibraryKeys>(filePath: K): Promise<BundleImport<LibraryImport<K>>['exports']> {
+    const path = metaRelative(filePath)
+    const data = await bundleImport(filePath)
+    const bf = new BundleFile(data.path, 'global')
     this.routes.push(bf)
     return data.exports
   }

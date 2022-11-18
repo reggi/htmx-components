@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 
 const templateHTML = `
 <style>  

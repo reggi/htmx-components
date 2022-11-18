@@ -1,6 +1,10 @@
 // deno-lint-ignore-file no-explicit-any
-
+// import { fileName } from './meta_url.ts'
 import { bundlePieces } from "./bundle_file.ts";
+
+export const THIS = Symbol('this')
+export const EVENT = Symbol('event') as unknown as Event
+export const THIS_ELEMENT = Symbol('thisElement') as unknown as HTMLElement
 
 /**
  * 
@@ -21,7 +25,9 @@ import { bundlePieces } from "./bundle_file.ts";
  * 
  */
 
-export function codeProxy (bundleFile: string) { 
+type AsEvaluation = (bundleFile: string, v: string[], args: [], fileName?: string) => string
+
+export function codeProxy (bundleFile: string, asEvaluation: AsEvaluation, fileName?: string) { 
   return new Proxy({}, {
     get (_target: any, prop: any) {
       if (prop === Symbol.toStringTag) {
@@ -32,14 +38,14 @@ export function codeProxy (bundleFile: string) {
         return {};
       }
       const call = (...args: any) => {
-        return asEvaluation(bundleFile, [prop], args)
+        return asEvaluation(bundleFile, [prop], args, fileName)
       }
       const v: any[] = [prop];
       const guts: any = {
         get (_target: any, prop: any) {
-          console.log(_target, prop, 'b')
+          // console.log(_target, prop, 'b')
           const call = (...args: any) => {
-            return asEvaluation(bundleFile, v, args)
+            return asEvaluation(bundleFile, v, args, fileName)
           }
           v.push(prop)
           return new Proxy(call, guts)
@@ -50,23 +56,41 @@ export function codeProxy (bundleFile: string) {
   })
 }
 
-const asEvaluation = (bundleFile: string, v: string[], args: []) => {
-  return `import("${bundleFile}").then(({ ${v[0]} }) => ${asEvaluationCall(v, args)})`
-}
-
 const asEvaluationCall = (v: string[], args: []) => {
+  args = args.map(a => {
+    if (a === THIS || a === THIS_ELEMENT) {
+      return '&this';
+    } else if (a === EVENT) {
+      return '&event';
+    } else {
+      return a
+    }
+  }) as any;
   const isNotExecuted = v[v.length -1 ] == 'valueOf'
   if (isNotExecuted) {
     v.pop()
     return v.join('.')
   } else {
-    return `${v.join('.')}(${JSON.stringify(args).replace(/^\[/, '').replace(/\]$/, '')})`
+    return `${v.join('.')}(${JSON.stringify(args).replace('"&this"', 'this').replace('"&event"', 'event').replace(/^\[/, '').replace(/\]$/, '')})`
   }
+}
+
+const importThenEvaluation = (bundleFile: string, v: string[], args: []) => {
+  return `import("${bundleFile}").then(({ ${v[0]} }) => ${asEvaluationCall(v, args)})`
 }
 
 export function constructImport <T>(path: string, _v: () => Promise<T>) {
   const bundleFile = bundlePieces(path).pathname
-  return codeProxy(bundleFile) as T
+  return codeProxy(bundleFile, importThenEvaluation) as T
+}
+
+const evaluation = (_bundleFile: string, v: string[], args: [], fileName?: string) => {
+  return `${fileName}.${asEvaluationCall(v, args)}`
+}
+
+export function constructBundle <T>(path: string, fileName: string, _v: () => Promise<T>) {
+  const bundleFile = bundlePieces(path).pathname
+  return codeProxy(bundleFile, evaluation, fileName) as T
 }
 
 // const code = constructImport('meosi.js', () => import('../examples/client_code/multi.ts'))

@@ -1,5 +1,6 @@
 import { getEntryId } from '../esbuild/bundle.ts';
 import * as nodePath from "https://deno.land/std@0.163.0/path/mod.ts";
+import { fileName } from './meta_url.ts'
 
 export abstract class RouteFile {
   abstract TYPE: string
@@ -11,10 +12,14 @@ export class BundleFile extends RouteFile {
   entry: { id: string, url: string }
   urlPattern: URLPattern
   bundleId: string
-  constructor (path: string) {
+  fileName: string
+  constructor (
+    public path: string,
+    public include: 'script' | 'module' | 'global' | false,
+  ) {
     super()
     const pieces = bundlePieces(path)
-    
+    this.fileName = fileName(path)
     this.entry = pieces.entry
     this.bundleId = pieces.pathname
     this.urlPattern = new URLPattern({ pathname: pieces.pathname })
