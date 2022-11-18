@@ -146,7 +146,7 @@ export async function importModule(
 		const entryPoint = resolveModuleSpecifier(moduleName, base, {
 			useActiveImportMap: true,
 		})
-
+    console.log({ entryPoint })
 		return await buildAndEvaluate({
 			entryPoints: [entryPoint],
 		})

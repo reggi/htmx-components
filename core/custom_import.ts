@@ -2,7 +2,7 @@
 
 import * as path from "https://deno.land/std@0.163.0/path/mod.ts";
 // import { encode } from "https://deno.land/std@0.99.0/encoding/base64.ts";
-import { removeFilePrefix } from './meta_url.ts'
+import { metaUrl, removeFilePrefix } from './meta_url.ts'
 
 // const genImport = (code: string) => new URL(`data:application/typescript;base64,${encode(code)}`)
 const basePath = path.join(path.dirname(import.meta.url.replace(/^file:\/\//, '')), '..')
@@ -38,9 +38,10 @@ const resolveHere = (v: string) => {
 import { importModule } from '../dynamic_import/mod.ts'
 
 function denoDeployCompatImport <T> (g: string, _maintainTypes: () => Promise<T>): Promise<T> {
-  if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
-    return importModule(g) as any
-  }
+  // if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
+  //   return importModule(g) as any
+  // }
+  // return importModule(g) as any
   return importModule(g) as any
 }
 

@@ -23,6 +23,12 @@ export const fileName = (path: string) => {
   return nodePath.basename(path, nodePath.extname(path))
 }
 
+export const metaRelativeOrigin = (origin: string, requestingImport: string) => {
+  const callee = removeFilePrefix(origin)
+  const calleeParent = nodePath.dirname(callee)
+  return nodePath.resolve(calleeParent, requestingImport)
+}
+
 export const metaRelative = (requestingImport: string) => {
   const callee = removeFilePrefix(metaUrl())
   const calleeParent = nodePath.dirname(callee)
