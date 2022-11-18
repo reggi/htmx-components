@@ -1,3 +1,4 @@
+console.log('hi')
 
 export const library = {
   "./client_code/multi.ts": {
