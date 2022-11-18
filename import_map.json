@@ -13,6 +13,5 @@
     "reggi/": "https://gistdeno.reggi.com/",
     "nanoid": "https://esm.sh/nanoid@4.0.0",
     "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
-    "meta": "./core/meta_url.ts"
   }
 }
