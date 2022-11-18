@@ -1,4 +1,4 @@
-import { metaDir } from "./core/meta_url.ts";
+import { metaDir } from "meta";
 export const basePath = metaDir()
 
 export const library = {
