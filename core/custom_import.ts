@@ -38,15 +38,11 @@ const resolveHere = (v: string) => {
 import { importModule } from '../dynamic_import/mod.ts'
 
 function denoDeployCompatImport <T> (g: string, _maintainTypes: () => Promise<T>): Promise<T> {
-  // if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
-  //   return importModule(g) as any
-  // }
-  // return importModule(g) as any
   return importModule(g) as any
 }
 
 const { library } = await denoDeployCompatImport('import_library', () => import('../import_library.ts'))
-  // .catch(() => ({ library: undefined }))
+  .catch(() => ({ library: undefined }))
 
 export type RawLibraryType = typeof library
 export type LibraryType = NonNullable<RawLibraryType>

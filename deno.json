@@ -10,7 +10,6 @@
     "click-to-load": "deno run --allow-env --allow-net --watch ./examples/3.click-to-load.tsx",
     "delete-row": "deno run --allow-env --allow-net --watch ./examples/4.delete-row.tsx",
     "edit-row": "deno run --allow-env --allow-net --watch ./examples/5.edit-row.tsx",
-    "embeded-import": "deno run --allow-env --allow-net --watch ./examples/96.embeded_import.tsx",
     "client-code": "deno run --allow-env --allow-net --watch ./examples/98.client-code.tsx",
     "web-component": "deno run --allow-env --allow-net --watch ./examples/99.web-component.tsx"
   },

@@ -1,39 +1,25 @@
-// deno-lint-ignore-file require-await no-explicit-any
 import { Fragment, HTMX, HTMXComponents, asyncComponent } from "../mod.tsx"
+import { DummyDb } from './dummydb.ts'
 
 const { component, partial, serve, routes } = new HTMXComponents('@reggi/delete-row')
 
-let inMemoryDb: any = {
-  '1': { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com', active: true },
-  '2': { firstName: 'Rick', lastName: 'Dekkard', email: 'rick@br.com', active: true },
-  '3': { firstName: 'Joe', lastName: 'Smith', email: 'joe@smith.org', active: true },
-  '4': { firstName: 'Angie', lastName: 'MacDowell', email: 'rick@br.com', active: true },
-  '5': { firstName: 'Fuqua', lastName: 'Tarkenton', email: 'fuqua@tarkenton.org', active: false },
-}
-
-const cloneInMemoryDb = {...inMemoryDb}
-
-const queryDatabase = async () => {
-  return Object.entries(inMemoryDb).map(([id, user]: any) => ({ id, ...user }))
-}
-
-const deleteItem = async (id: string) => {
-  delete inMemoryDb[id]
-}
-
-const hydrateData = async () => {
-  inMemoryDb = {...cloneInMemoryDb}
-}
+const db = new DummyDb([
+  { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com', active: true },
+  { firstName: 'Rick', lastName: 'Dekkard', email: 'rick@br.com', active: true },
+  { firstName: 'Joe', lastName: 'Smith', email: 'joe@smith.org', active: true },
+  { firstName: 'Angie', lastName: 'MacDowell', email: 'rick@br.com', active: true },
+  { firstName: 'Fuqua', lastName: 'Tarkenton', email: 'fuqua@tarkenton.org', active: false },
+])
 
 const DeleteRow = partial('/delete-row/:item', async ({ item }: { item: string }) => {
-  await deleteItem(item)
+  await db.remove(item)
   return (
     <Fragment></Fragment>
   )
 })
 
 const Entires = asyncComponent(async () => {
-  const entries = await queryDatabase()
+  const entries = await db.all()
   return (
     <Fragment>
       {entries.map(entry => (
@@ -42,7 +28,7 @@ const Entires = asyncComponent(async () => {
         <td>{entry.email}</td>
         <td>{entry.active ? 'Active': "Inactive"}</td>
         <td>
-          <DeleteRow.button.delete class="btn btn-danger" item={entry.id}>
+          <DeleteRow.button.delete class="btn btn-danger" item={entry.id.toString()}>
             Delete 
           </DeleteRow.button.delete>
         </td>
@@ -53,13 +39,13 @@ const Entires = asyncComponent(async () => {
 })
 
 const Hydrate = partial('/hydrate', async () => {
-  await hydrateData()
+  await db.reset()
   return (
     <Entires/>
   )
 })
 
-export const DeleteRowExample = component('/delete-row-example', async () => {
+export const DeleteRowExample = component('/delete-row-example', () => {
   return (
     <Fragment>
       <style>{`

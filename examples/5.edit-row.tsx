@@ -1,44 +1,23 @@
-// deno-lint-ignore-file require-await no-explicit-any
 import { THIS_ELEMENT, EVENT, JSX, Fragment, HTMX, HTMXComponents } from "../mod.tsx"
+import { DummyDb } from "./dummydb.ts"
+import { stringFormData } from "./request_helper.ts"
 
 const { component, partial, serve, bundleImport, routes } = new HTMXComponents('@reggi/delete-row')
-
 export const EditOne = await bundleImport('./client_code/edit_one.ts')
 
-const inMemoryDb: any = {
-  '1': { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com' },
-  '2': { firstName: 'Rick', lastName: 'Dekkard', email: 'rick@br.com' }
-}
+const db = new DummyDb([
+  { firstName: 'Thomas', lastName: 'Reggi', email: 'thomas@reggi.com' },
+  { firstName: 'Rick', lastName: 'Dekkard', email: 'rick@br.com' }
+])
 
-const queryDatabase = async () => {
-  return Object.entries(inMemoryDb).map(([id, user]: any) => ({ id, ...user }))
-}
-
-const findDatabase = async ({ identifier }: { identifier: string }) => {
-  if (identifier === '1') return {...inMemoryDb['1'], id: identifier}
-  if (identifier === '2') return {...inMemoryDb['2'], id: identifier}
-  throw new Error('not found')
-}
-
-const updateDatabase = async ({ identifier }: { identifier: string }, payload: any)=> {
-  if (identifier in inMemoryDb) {
-    inMemoryDb[identifier] = payload
-  }
-}
-
-const getOrUpdate = async ({ identifier }: { identifier: string }, request: Request) => {
-  if (request.method === 'PUT') {
-    const { name, email } = Object.fromEntries((await request.formData()).entries())
-    if (typeof name !== 'string') throw new Error('invalid name');
-    const [firstName, lastName] = name.split(' ')
-    updateDatabase({ identifier }, { firstName, lastName, email })
-    return { firstName, lastName, email, id: identifier }
-  }
-  return await findDatabase({ identifier })
+const formEntriesData = async (id: string, request: Request) => {
+  if (request.method !== 'PUT') return;
+  const { firstName, lastName, email } = await stringFormData(request)
+  return { firstName, lastName, email, id: parseInt(id) }
 }
 
 export const Table = component('/edit-row', async ({ rows }: { rows: JSX.Element }) => {
-  const entries = await queryDatabase()
+  const entries = await db.all()
   return (
     <Fragment>
       <p>This file has a bundled js file loaded in the HEAD on the page, and some client-side js will run from within the click handlers, preventing you from editing 2 things at once.</p>
@@ -69,12 +48,12 @@ const DumbRow = ({ data }: { data: any }) => (
 )
 
 const Row = partial('/edit-row/contact/:identifier', async ({ identifier }: { identifier: string}, ctx) => {
-  const data = await getOrUpdate({ identifier }, ctx.request)
+  const data = db.updateOrFind(identifier, await formEntriesData(identifier, ctx.request))
   return <DumbRow data={data}/>
 })
 
 const EditRow = partial('/edit-row/contact/:identifier/edit', async ({ identifier }: { identifier: string}, ctx) => {
-  const data = await getOrUpdate({ identifier }, ctx.request)
+  const data = db.updateOrFind(identifier, await formEntriesData(identifier, ctx.request))
   return (
     <HTMX.tr>
       <td><input name='name' value={`${data.firstName} ${data.lastName}`}/></td>
