@@ -108,6 +108,7 @@
     "https://esm.sh/preact@10.11.2/hooks": "dc759275a04afc43f2341d80a49c1b72b724f4a08ef7ce6080b6dcfcd788bd31",
     "https://esm.sh/preact@10.11.2/jsx-runtime": "40654c7e9066221bab024d036ab828d9e9eb7ae0f386ace02d86c0cc8bb22ce0",
     "https://esm.sh/stable/@reggi/preact-async-render-to-string@5.2.7": "5761fba77d5463bca16fbc27675b326717fd5d873a226aec99f5706872cdb0fe",
+    "https://esm.sh/stable/@reggi/preact-async-render-to-string@5.2.7?deps=preact@10.11.2": "39ca61ef58f14d6504c1e8f5f37e1b245aa00a8f5c56e33cbc350bad2f8f055c",
     "https://esm.sh/stable/preact@10.11.2/deno/hooks.js": "087a25c11461775d85401c1329ff8ec0e209e2b2892f31683eb66fd74030af9e",
     "https://esm.sh/stable/preact@10.11.2/deno/jsx-runtime.js": "e04822710db4725f5ed01cf21f8ef713fbf10f6bc472415b8fec3801bba3133e",
     "https://esm.sh/stable/preact@10.11.2/deno/preact.js": "10e7be6ea2698598105f404198789d8a34fd6a1ca020482f94eaaaca736badf5",
@@ -134,6 +135,10 @@
     "https://esm.sh/v98/strip-shebang@2.0.0/deno/strip-shebang.js": "83552307cc07110492996d15f5214fc61f16be4c0236a13863ea8095f298f42e",
     "https://esm.sh/v98/sweetalert2@11.6.8/deno/sweetalert2.js": "fbabe350d0e3dfe88545cdf2fa6e6d7be1c72603866cc738fe1c02735ef9428f",
     "https://esm.sh/v98/sweetalert2@11.6.8/sweetalert2.d.ts": "e068098034e042c439eeaca9a2ad13fa97eb119d82867ae9a5c353a9f3aed531",
+    "https://esm.sh/v99/@reggi/preact-async-render-to-string@5.2.7/X-ZC9wcmVhY3RAMTAuMTEuMg/deno/preact-async-render-to-string.js": "d17ed7b352f7f3a58193101889add08373cf29886e3abea0f9989ed1fed74936",
+    "https://esm.sh/v99/@reggi/preact-async-render-to-string@5.2.7/X-ZC9wcmVhY3RAMTAuMTEuMg/src/index.d.ts": "a8cafffbcae94492662a9b08ca1b99c136efa5d07c0d6ed0b5c28979eabbd833",
+    "https://esm.sh/v99/preact@10.11.2/src/index.d.ts": "76842a9d103548261ee001f2aee5fa5cacc8b1b4b4032af537ed84603c8f4a31",
+    "https://esm.sh/v99/preact@10.11.2/src/jsx.d.ts": "77ce5bd7324455c9f6dc85bfc3c94b733acb92cc98fdf82e4b1059c8bca7866d",
     "https://unpkg.com/htmx.org@1.8.4/dist/ext/disable-element.js": "24ced8090698b58ac5eb1d62e9698bf7fb9a811325549d0480a0fdcf49556d6f"
   }
 }

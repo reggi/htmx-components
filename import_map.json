@@ -5,13 +5,14 @@
     "$fresh/": "https://deno.land/x/fresh@1.1.2/",
     "preact": "https://esm.sh/preact@10.11.2",
     "preact/": "https://esm.sh/preact@10.11.2/",
-    "preact-async-render-to-string": "https://esm.sh/stable/@reggi/preact-async-render-to-string@5.2.7",
+    "preact-async-render-to-string": "https://esm.sh/stable/@reggi/preact-async-render-to-string@5.2.7?deps=preact@10.11.2",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "reggi/": "https://gistdeno.reggi.com/",
     "nanoid": "https://esm.sh/nanoid@4.0.0",
-    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts"
+    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
+    "path": "https://deno.land/std@0.110.0/path/mod.ts"
   }
 }

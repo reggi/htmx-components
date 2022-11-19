@@ -13,9 +13,15 @@
     "client-code": "deno run --allow-env --allow-net --watch ./examples/98.client-code.tsx",
     "web-component": "deno run --allow-env --allow-net --watch ./examples/99.web-component.tsx"
   },
-  "importMap": "./import_map.json",
   "compilerOptions": {
+    "lib": [
+      "deno.ns",
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable"
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
-  }
+  },
+  "importMap": "./import_map.json"
 }

@@ -3,7 +3,7 @@ import * as nodePath from 'https://deno.land/std@0.150.0/path/mod.ts';
 export const metaUrl = () => {
   const error = new Error()
   const lines = error.stack?.split('\n')
-  let line = lines && lines.reverse()[0] || ''
+  let line = lines?.find(line => line.trim().match(/^at file/)) || ""
   const m = line.match(/at.+\((.+)\)/)
   if (m && m[1]) line = m[1];
   line = line.replace(/\sat\s+/, '')
@@ -11,6 +11,11 @@ export const metaUrl = () => {
   line = line.trim()
   return line
 }
+
+export const oneNested = () => metaUrl()
+export const twoNested = () => oneNested()
+export const threeNested = () => twoNested()
+export const fourNested = () => threeNested()
 
 export const metaDir = () => {
   const core = metaUrl()
