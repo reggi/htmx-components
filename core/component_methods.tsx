@@ -7,7 +7,7 @@ import * as HTMX from '../htmx/htmx.tsx'
 import { nanoid } from "nanoid";
 import { ComponentmethodConvience, componentMethodConvience, PropsToUrl } from "./method_convience.tsx";
 import { WrapperType } from "./htmx_components.tsx";
-import { compile } from 'https://esm.sh/path-to-regexp'
+import { compile } from 'https://esm.sh/path-to-regexp@6.2.1'
 
 export type Constructor = new (...args: any[]) => any;
 export type GenericProps = Record<string, unknown>;
@@ -66,6 +66,7 @@ export class ComponentMethods<C extends GenericProps> {
     this.delete = {"hx-delete": this.path}
     this.Wrap = this.Wrap.bind(this)
     this.getPath = this.getPath.bind(this)
+    this.clone = this.clone.bind(this)
   }
   getPath (ctx: any, props: C, query: any) {
     return this.propsToUrl(props, this.path, ctx, query)
