@@ -148,6 +148,7 @@ export async function importModule(
 			useActiveImportMap: true,
 		})
     const ep = removeFilePrefix(entryPoint)
+    console.log({ ep })
 		return await buildAndEvaluate({
 			entryPoints: [ep],
 		})

@@ -42,7 +42,7 @@ function denoDeployCompatImport <T> (g: string, _maintainTypes: () => Promise<T>
 }
 
 const { library } = await denoDeployCompatImport('import_library', () => import('../import_library.ts'))
-  .catch(() => ({ library: undefined }))
+  // .catch(() => ({ library: undefined }))
 
 export type RawLibraryType = typeof library
 export type LibraryType = NonNullable<RawLibraryType>
