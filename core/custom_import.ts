@@ -2,7 +2,7 @@
 
 import * as path from "https://deno.land/std@0.163.0/path/mod.ts";
 // import { encode } from "https://deno.land/std@0.99.0/encoding/base64.ts";
-import { metaUrl, removeFilePrefix } from './meta_url.ts'
+import { removeFilePrefix } from './meta_url.ts'
 
 // const genImport = (code: string) => new URL(`data:application/typescript;base64,${encode(code)}`)
 const basePath = path.join(path.dirname(import.meta.url.replace(/^file:\/\//, '')), '..')

@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { THIS_ELEMENT, EVENT, JSX, Fragment, HTMX, HTMXComponents } from "../mod.tsx"
 import { DummyDb } from "./dummydb.ts"
 import { stringFormData } from "./request_helper.ts"
