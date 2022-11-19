@@ -135,13 +135,13 @@ export async function importModule(
 	moduleName: string,
 	{ force = false }: ImportModuleOptions = {},
 ): Promise<Module> {
-	try {
-		if (force) throw new Error('Forced')
+	// try {
+	// 	if (force) throw new Error('Forced')
 
-		return await import(moduleName)
-	} catch (error) {
-		if (!isDenoCompiled && !isDenoDeploy && error.message !== 'Forced')
-			throw error
+	// 	return await import(moduleName)
+	// } catch (error) {
+	// 	if (!isDenoCompiled && !isDenoDeploy && error.message !== 'Forced')
+	// 		throw error
 
 		const base = ErrorStackParser.parse(new Error())[1].fileName
 		const entryPoint = resolveModuleSpecifier(moduleName, base, {
@@ -151,7 +151,7 @@ export async function importModule(
 		return await buildAndEvaluate({
 			entryPoints: [ep],
 		})
-	}
+	// }
 }
 
 export async function importString(
