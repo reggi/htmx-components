@@ -1,4 +1,4 @@
-import { HTMX, HTMXComponents } from "../mod.tsx"
+import { Fragment, HTMX, HTMXComponents } from "../mod.tsx"
 import { DummyDb } from "./dummydb.ts"
 import { stringFormData } from "./request_helper.ts"
 
@@ -51,7 +51,20 @@ export const Edit = component('/contacts/:identifier/edit', async ({ identifier 
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Click to Edit Examples</h1>
+    <ul>
+      <li><Contact.anchor.href boost identifier='1'>View Contact 1</Contact.anchor.href></li>
+      <li><Contact.anchor.href boost identifier='2'>View Contact 2</Contact.anchor.href></li>
+      <li><Edit.anchor.href boost identifier='1'>Edit Contact 1</Edit.anchor.href></li>
+      <li><Edit.anchor.href boost identifier='2'>Edit Contact 2</Edit.anchor.href></li>
+    </ul>
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

@@ -1,5 +1,5 @@
 import { ComponentChild } from "preact";
-import { HTMXComponents } from "../mod.tsx";
+import { Fragment, HTMXComponents } from "../mod.tsx";
 
 const { component, serve, routes, webComponent } = new HTMXComponents('@reggi/web-component')
 
@@ -13,7 +13,17 @@ export const WebComponentExample = component('/web-component', () => {
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Web Component</h1>
+    <ul>
+      <li><WebComponentExample.anchor.href boost>Web Component</WebComponentExample.anchor.href></li>
+    </ul>
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

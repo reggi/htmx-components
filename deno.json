@@ -3,15 +3,16 @@
     "build-htmx": "deno run --allow-read --allow-write ./htmx/htmx_build.ts",
     "test": "deno test --config ./tsconfig.json",
     "start": "deno task all-examples",
-    "examples": "export NO_SERVE=true && deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch ./examples/examples.tsx",
+    "denoRun": "deno run --allow-env --allow-net --allow-read --allow-run --allow-write --watch",
+    "examples": "export NO_SERVE=true && deno task denoRun ./examples/examples.tsx",
     "tasks": "deno run --allow-read --allow-write ./scripts/tasks.ts",
-    "click-to-edit": "deno run --allow-env --allow-net --watch ./examples/1.click-to-edit.tsx",
-    "bulk-update": "deno run --allow-env --allow-net --watch ./examples/2.bulk-update.tsx",
-    "click-to-load": "deno run --allow-env --allow-net --watch ./examples/3.click-to-load.tsx",
-    "delete-row": "deno run --allow-env --allow-net --watch ./examples/4.delete-row.tsx",
-    "edit-row": "deno run --allow-env --allow-net --watch ./examples/5.edit-row.tsx",
-    "client-code": "deno run --allow-env --allow-net --watch ./examples/98.client-code.tsx",
-    "web-component": "deno run --allow-env --allow-net --watch ./examples/99.web-component.tsx"
+    "click-to-edit": "deno task denoRun ./examples/1.click-to-edit.tsx",
+    "bulk-update": "deno task denoRun ./examples/2.bulk-update.tsx",
+    "click-to-load": "deno task denoRun ./examples/3.click-to-load.tsx",
+    "delete-row": "deno task denoRun ./examples/4.delete-row.tsx",
+    "edit-row": "deno task denoRun ./examples/5.edit-row.tsx",
+    "client-code": "deno task denoRun ./examples/98.client-code.tsx",
+    "web-component": "deno task denoRun ./examples/99.web-component.tsx"
   },
   "compilerOptions": {
     "lib": [

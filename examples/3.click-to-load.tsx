@@ -58,7 +58,17 @@ export const ClickToLoad = component('/click-to-load', (_props, ctx) => {
   )  
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Click to Load Example</h1>
+    <ul>
+      <li><ClickToLoad.anchor.href boost>Click to Load Example</ClickToLoad.anchor.href></li>
+    </ul>
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

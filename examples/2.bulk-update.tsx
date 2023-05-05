@@ -70,7 +70,17 @@ export const People = component('/people', async () => {
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Bulk Update Examples</h1>
+    <ul>
+      <li><People.anchor.href boost identifier='2'>People</People.anchor.href></li>
+    </ul>
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

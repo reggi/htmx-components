@@ -15,7 +15,18 @@ export const OnClick = component('/client-code-on-click', () => {
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Client Import</h1>
+    <ul>
+      <li><OnClick.anchor.href boost>Qwik-style on click js loading</OnClick.anchor.href></li>
+    </ul>
+
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

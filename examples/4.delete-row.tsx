@@ -72,7 +72,17 @@ export const DeleteRowExample = component('/delete-row-example', () => {
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Delete Row</h1>
+    <ul>
+      <li><DeleteRowExample.anchor.href boost>Delete Row Example</DeleteRowExample.anchor.href></li>
+    </ul>
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 

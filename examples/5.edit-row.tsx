@@ -71,7 +71,17 @@ const EditRow = partial('/edit-row/contact/:identifier/edit', async ({ identifie
   )
 })
 
+export const nav = (
+  <Fragment>
+    <h1>Edit Row</h1>
+    <ul>
+      <li><Table.anchor.href boost>"Edit Row", example with client side javascript</Table.anchor.href></li>
+    </ul> 
+  </Fragment>
+)
+
 if (!Deno.env.get('NO_SERVE')) {
+  component('/', () => nav)
   await serve()
 }
 
