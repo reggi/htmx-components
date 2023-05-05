@@ -167,7 +167,7 @@ export class HTMXComponents {
       }
       
       return fourOhFour
-    })
+    }, { port: 8080})
   }
   component <C extends GenericProps> (Component: GenericComponent<C>, options: ComponentOptions<C>): ComponentWithMethods<C>
   component <C extends GenericProps> (path: string, Component: GenericComponent<C>, propsToUrlOrOptions?: PropsToUrl<C> | ComponentOptions<C>): ComponentWithMethods<C>
